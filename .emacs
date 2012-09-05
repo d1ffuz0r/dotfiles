@@ -18,11 +18,10 @@
 
 ;; A number of the erlang-extended-mode key bindings are useful in the shell too
 (defconst distel-shell-keys
-  '(("\C-\M-i"   erl-complete)
-    ("\M-?"      erl-complete)	
+  '(("TAB"      erl-complete)	
     ("\M-."      erl-find-source-under-point)
     ("\M-,"      erl-find-source-unwind) 
-    ("\M-*"      erl-find-source-unwind) 
+    ("\M-*"      erl-find-source-unwind)
     )
   "Additional keys to bind when in Erlang shell.")
 
@@ -48,8 +47,5 @@
 (setq-default indent-tabs-mode nil)
 (setq default-tab-width 4)
 
-(add-to-list 'load-path "~/.emacs.d/vendor/auto-complete-1.2")
-(require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/vendor/auto-complete-1.2/dict")
-(ac-config-default)
-(define-key ac-mode-map (kbd "TAB") 'auto-complete)
+;; https://github.com/gabrielelanaro/emacs-for-python
+(load-file "~/.emacs.d/vendor/emacs-for-python/epy-init.el")
