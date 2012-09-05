@@ -43,3 +43,13 @@
 
 (desktop-save-mode 1)
 (load-theme 'solarized-dark t)
+
+
+(setq-default indent-tabs-mode nil)
+(setq default-tab-width 4)
+
+(add-to-list 'load-path "~/.emacs.d/vendor/auto-complete-1.2")
+(require 'auto-complete-config)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/vendor/auto-complete-1.2/dict")
+(ac-config-default)
+(define-key ac-mode-map (kbd "TAB") 'auto-complete)
