@@ -47,5 +47,24 @@
 (setq-default indent-tabs-mode nil)
 (setq default-tab-width 4)
 
+(custom-set-variables
+'(inhibit-startup-screen t)
+'(tool-bar-mode nil)
+'(visible-bell t)
+'(winner-mode t nil (winner))
+'(initial-scratch-message nil))
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+(desktop-save-mode 1)
+(load-theme 'solarized-dark t)
+
+(setq-default indent-tabs-mode nil)
+(setq default-tab-width 4)
+
+;; Emacs nav
+(add-to-list 'load-path "~/.emacs.d/vendor/emacs-nav")
+(require 'nav)
+(global-set-key [f8] 'nav-toggle)
+
 ;; https://github.com/gabrielelanaro/emacs-for-python
 (load-file "~/.emacs.d/vendor/emacs-for-python/epy-init.el")
