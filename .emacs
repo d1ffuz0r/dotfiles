@@ -40,13 +40,6 @@
 	    (dolist (spec distel-shell-keys)
 	      (define-key erlang-shell-mode-map (car spec) (cadr spec)))))
 
-(desktop-save-mode 1)
-(load-theme 'solarized-dark t)
-
-
-(setq-default indent-tabs-mode nil)
-(setq default-tab-width 4)
-
 (custom-set-variables
 '(inhibit-startup-screen t)
 '(tool-bar-mode nil)
@@ -54,10 +47,8 @@
 '(winner-mode t nil (winner))
 '(initial-scratch-message nil))
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
-
 (desktop-save-mode 1)
 (load-theme 'solarized-dark t)
-
 (setq-default indent-tabs-mode nil)
 (setq default-tab-width 4)
 
