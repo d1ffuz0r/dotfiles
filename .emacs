@@ -21,16 +21,15 @@
 
 ;; A number of the erlang-extended-mode key bindings are useful in the shell too
 (defconst distel-shell-keys
- '(("TAB"      erl-complete)	
+ '(("TAB"      erl-complete)
    ("\M-."      erl-find-source-under-point)
-   ("\M-,"      erl-find-source-unwind) 
+   ("\M-,"      erl-find-source-unwind)
    ("\M-*"      erl-find-source-unwind)
   )
   "Additional keys to bind when in Erlang shell.")
 
 (add-hook 'erlang-mode-hook
 	  (lambda ()
-           
 	    ;; when starting an Erlang shell in Emacs, default in the node name
 	    (setq inferior-erlang-machine-options '("-sname" "emacs"))
 	    ;; add Erlang functions to an imenu menu
