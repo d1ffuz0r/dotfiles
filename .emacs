@@ -3,7 +3,6 @@
 (load-theme 'solarized-dark t)
 
 ;; erlang mode
-
 ;; set erlang directories
 (setq load-path (cons  "/opt/local/lib/erlang/lib/tools-2.6.7/emacs"
       load-path))
@@ -55,7 +54,12 @@
  '(winner-mode t nil (winner))
  '(indent-tabs-mode nil)
  '(initial-scratch-message nil))
+(custom-set-variables
+  '(auto-save-file-name-transforms '((".*" "~/.emacs.d/autosaves/\\1" t)))
+  '(backup-directory-alist '((".*" . "~/.emacs.d/backups/"))))
 
+;; create the autosave dir if necessary, since emacs won't.
+(make-directory "~/.emacs.d/autosaves/" t)
 
 ;;--------------------tabbar------------------------
 (add-to-list 'load-path "~/.emacs.d/vendor/emhacks")
