@@ -55,5 +55,5 @@ export PIP_RESPECT_VIRTUALENV=true
 export PATH=$PATH:~/Library/Python/2.7/bin
 
 # Aliases
-
+alias emacs="/Applications/Emacs.app/Contents/MacOS/Emacs -nw"
 alias erl="erl -sname localhost"
