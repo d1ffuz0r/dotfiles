@@ -4,7 +4,7 @@
 
 ;; erlang mode
 ;; set erlang directories
-(setq load-path (cons  "/opt/local/lib/erlang/lib/tools-2.6.7/emacs"
+(setq load-path (cons  "/opt/local/lib/erlang/lib/tools-2.6.8/emacs"
       load-path))
 (setq erlang-root-dir "/opt/local/lib/erlang")
 (setq exec-path (cons "/opt/local/bin" exec-path))
