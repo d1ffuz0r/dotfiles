@@ -16,6 +16,13 @@
 (add-to-list 'load-path "~/.emacs.d/vendor/haml-mode")
 (require 'haml-mode)
 
+;; jinja2 mode
+;; git://github.com/paradoxxxzero/jinja2-mode.git
+(add-to-list 'load-path "~/.emacs.d/vendor/jinja2-mode")
+(require 'jinja2-mode)
+
+(add-to-list 'auto-mode-alist '("\\.html$" . jinja2-mode))
+
 ;; coffeescript mode
 ;; git://github.com/defunkt/coffee-mode.git
 (add-to-list 'load-path "~/.emacs.d/vendor/coffee-mode")
@@ -161,7 +168,6 @@ middle"
 
 (custom-set-variables
  '(scroll-bar-mode nil)
- '(menu-bar-mode nil)
  '(tool-bar-mode nil)
  '(scroll-step 1)
  '(global-hl-line-mode 1)
