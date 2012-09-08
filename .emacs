@@ -4,8 +4,7 @@
 (add-to-list 'load-path "~/.emacs.d/emacs-color-theme-solarized/")
 (load-theme 'solarized-dark t)
 
-
-;; clevercss-mode
+;; clevercss mode
 ;; git://github.com/jschaf/CleverCSS-Mode.git
 (add-to-list 'load-path "~/.emacs.d/vendor/clevercss-mode")
 (require 'clevercss)
@@ -17,7 +16,7 @@
 (add-to-list 'load-path "~/.emacs.d/vendor/haml-mode")
 (require 'haml-mode)
 
-;; cofeescript mode
+;; coffeescript mode
 ;; git://github.com/defunkt/coffee-mode.git
 (add-to-list 'load-path "~/.emacs.d/vendor/coffee-mode")
 (require 'coffee-mode)
@@ -96,15 +95,13 @@
  '(default-tab-width 4)
  '(winner-mode t nil (winner))
  '(indent-tabs-mode nil)
- '(initial-scratch-message nil))
-(custom-set-variables
-  '(auto-save-file-name-transforms '((".*" "~/.emacs.d/autosaves/\\1" t)))
-  '(backup-directory-alist '((".*" . "~/.emacs.d/backups/"))))
+ '(initial-scratch-message nil)
+ '(auto-save-file-name-transforms '((".*" "~/.emacs.d/autosaves/\\1" t)))
+ '(backup-directory-alist '((".*" . "~/.emacs.d/backups/"))))
 
 ;; create the autosave dir if necessary, since emacs won't.
 (make-directory "~/.emacs.d/autosaves/" t)
 (make-directory "~/.emacs.d/backups/" t)
-
 
 ;; Tabbar
 (add-to-list 'load-path "~/.emacs.d/vendor/emhacks")
