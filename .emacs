@@ -1,13 +1,24 @@
+;; solarized theme
+;; git://github.com/sellout/emacs-color-theme-solarized.git
 (add-to-list 'custom-theme-load-path "~/.emacs.d/emacs-color-theme-solarized/")
 (add-to-list 'load-path "~/.emacs.d/emacs-color-theme-solarized/")
 (load-theme 'solarized-dark t)
 
 
+;; clevercss-mode
+;; git://github.com/jschaf/CleverCSS-Mode.git
+(add-to-list 'load-path "~/.emacs.d/vendor/clevercss-mode")
+(require 'clevercss)
+
+(add-to-list 'auto-mode-alist '("\\.ccss$" . clevercss-mode))
+
 ;; haml mode
+;; git://github.com/rradonic/haml-mode.git
 (add-to-list 'load-path "~/.emacs.d/vendor/haml-mode")
 (require 'haml-mode)
 
 ;; cofeescript mode
+;; git://github.com/defunkt/coffee-mode.git
 (add-to-list 'load-path "~/.emacs.d/vendor/coffee-mode")
 (require 'coffee-mode)
 
@@ -34,8 +45,8 @@
 
 (add-hook 'coffee-mode-hook 'coffee-custom)
 
-
 ;; erlang mode
+;; http://www.erlang.org/doc/apps/tools/erlang_mode_chapter.html
 ;; set erlang directories
 (setq load-path (cons  "/opt/local/lib/erlang/lib/tools-2.6.8/emacs"
       load-path))
@@ -94,9 +105,9 @@
 (make-directory "~/.emacs.d/autosaves/" t)
 (make-directory "~/.emacs.d/backups/" t)
 
-;;--------------------tabbar------------------------
-(add-to-list 'load-path "~/.emacs.d/vendor/emhacks")
+
 ;; Tabbar
+(add-to-list 'load-path "~/.emacs.d/vendor/emhacks")
 (require 'tabbar)
 
 ;; Tabbar hotkeys
@@ -157,10 +168,9 @@ That is, a string used to represent it on the tab bar."
                                 (tabbar-current-tabset)))))))))
 
 (tabbar-mode 1)
-;;-------------------END----------------------------
-
 
 ;; emacs-nav
+;; http://code.google.com/p/emacs-nav/
 (add-to-list 'load-path "~/.emacs.d/vendor/emacs-nav")
 (require 'nav)
 (global-set-key [f8] 'nav-toggle)
