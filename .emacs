@@ -11,7 +11,7 @@
 (require 'erlang-start)
 
 ;; This is needed for Distel setup
-(let ((distel-dir "~/.emacs.d/distel/elisp"))
+(let ((distel-dir "~/.emacs.d/vendor/distel/elisp"))
 (unless (member distel-dir load-path)
 ;; Add distel-dir to the end of load-path
 (setq load-path (append load-path (list distel-dir)))))
