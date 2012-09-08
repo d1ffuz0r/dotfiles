@@ -2,6 +2,11 @@
 (add-to-list 'load-path "~/.emacs.d/emacs-color-theme-solarized/")
 (load-theme 'solarized-dark t)
 
+
+;; haml mode
+(add-to-list 'load-path "~/.emacs.d/vendor/haml-mode")
+(require 'haml-mode)
+
 ;; cofeescript mode
 (add-to-list 'load-path "~/.emacs.d/vendor/coffee-mode")
 (require 'coffee-mode)
