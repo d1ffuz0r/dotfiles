@@ -23,6 +23,13 @@
 
 (add-to-list 'auto-mode-alist '("\\.html$" . jinja2-mode))
 
+;; markdown mode
+;; http://jblevins.org/projects/markdown-mode/
+(add-to-list 'load-path "~/.emacs.d/vendor/markdown-mode")
+(require 'markdown-mode)
+
+(add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
+
 ;; coffeescript mode
 ;; git://github.com/defunkt/coffee-mode.git
 (add-to-list 'load-path "~/.emacs.d/vendor/coffee-mode")
@@ -200,29 +207,25 @@ middle"
  :box '(:line-width 1 :color "#073642" :style nil))
 (set-face-attribute
  'tabbar-unselected nil
- :background "#002b36"
- :foreground "white"
- :box '(:line-width 5 :color "#073642" :style nil))
-(set-face-attribute
- 'tabbar-selected nil
- :background "gray75"
+ :background "white"
  :foreground "#073642"
  :box '(:line-width 5 :color "#073642" :style nil))
 (set-face-attribute
+ 'tabbar-selected nil
+ :background "black"
+ :foreground "white"
+ :box '(:line-width 5 :color "#073642" :style nil))
+(set-face-attribute
  'tabbar-highlight nil
- :background "white"
- :foreground "black"
+ :background "gray75"
+ :foreground "#073642"
  :underline nil
- :box '(:line-width 5 :color "white" :style nil))
+ :box '(:line-width 5 :color "#073642" :style nil))
 (set-face-attribute
  'tabbar-button nil
  :background "#002b36"
  :foreground "#073642"
  :box '(:line-width 1 :color "#073642" :style nil))
-(set-face-attribute
- 'tabbar-separator nil
- :background "#002b36"
- )
 
 ;; Change padding of the tabs
 ;; we also need to set separator to avoid overlapping tabs by highlighted tabs
