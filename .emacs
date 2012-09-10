@@ -12,10 +12,9 @@
           (local-file (file-relative-name
                        temp-file
                        (file-name-directory buffer-file-name))))
-         (list "~/.emacs.d/pep8.py" (list "--repeat" local-file))))
-
- (add-to-list 'flymake-allowed-file-name-masks
-              '("\\.py\\'" flymake-pylint-init)))
+         (list "~/.emacs.d/pep8.py" (list local-file))))
+     (add-to-list 'flymake-allowed-file-name-masks
+                  '("\\.py\\'" flymake-pylint-init)))
 
 ;; clevercss mode
 ;; git://github.com/jschaf/CleverCSS-Mode.git
@@ -42,6 +41,7 @@
 (require 'markdown-mode)
 
 (add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.mkd$" . markdown-mode))
 
 ;; coffeescript mode
 ;; git://github.com/defunkt/coffee-mode.git
