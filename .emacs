@@ -1,8 +1,15 @@
 ;; solarized theme
 ;; git://github.com/sellout/emacs-color-theme-solarized.git
-(add-to-list 'custom-theme-load-path "~/.emacs.d/emacs-color-theme-solarized/")
-(add-to-list 'load-path "~/.emacs.d/emacs-color-theme-solarized/")
+(add-to-list 'custom-theme-load-path "~/.emacs.d/emacs-color-theme-solarized")
+(add-to-list 'load-path "~/.emacs.d/emacs-color-theme-solarized")
 (load-theme 'solarized-dark t)
+
+;; workspaces
+;; http://www.emacswiki.org/emacs/workspaces.el
+;; http://filonenko-mikhail.blogspot.com/2012/01/emacs-workspaces.html
+(add-to-list 'load-path "~/.emacs.d/vendor/workspaces")
+(load-library "workspaces.el")
+(global-set-key "\C-xg" 'workspace-goto)
 
 ;; pep8
 (when (load "flymake" t)
@@ -201,8 +208,8 @@ middle"
  '(backup-directory-alist '((".*" . "~/.emacs.d/backups/"))))
 
 ;; create the autosave dir if necessary, since emacs won't.
-(make-directory "~/.emacs.d/autosaves/" t)
-(make-directory "~/.emacs.d/backups/" t)
+(make-directory "~/.emacs.d/autosaves" t)
+(make-directory "~/.emacs.d/backups" t)
 
 ;; Tabbar
 (add-to-list 'load-path "~/.emacs.d/vendor/emhacks")
