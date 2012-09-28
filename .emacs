@@ -45,8 +45,6 @@
 (add-to-list 'load-path "~/.emacs.d/vendor/jinja2-mode")
 (require 'jinja2-mode)
 
-(add-to-list 'auto-mode-alist '("\\.html$" . jinja2-mode))
-
 ;; markdown mode
 ;; http://jblevins.org/projects/markdown-mode/
 (add-to-list 'load-path "~/.emacs.d/vendor/markdown-mode")
