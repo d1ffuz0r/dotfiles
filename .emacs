@@ -4,10 +4,9 @@
 (add-to-list 'load-path "~/.emacs.d/emacs-color-theme-solarized")
 (load-theme 'solarized-dark t)
 
-;; jabber
-(add-to-list 'load-path "~/.emacs.d/vendor/emacs-jabber")
-(require 'jabber)
-(require 'jabber-autoloads)
+;; git
+(add-to-list 'load-path "~/.emacs.d/vendor/git-emacs")
+(require 'git-emacs)
 
 ;; workspaces
 ;; http://www.emacswiki.org/emacs/workspaces.el
@@ -80,6 +79,47 @@
        (coffee-cos-mode t)))
 
 (add-hook 'coffee-mode-hook 'coffee-custom)
+
+;; erlang mode
+;; http://www.erlang.org/doc/apps/tools/erlang_mode_chapter.html
+;; set erlang directories
+(setq load-path (cons  "/opt/local/lib/erlang/lib/tools-2.6.8/emacs"
+      load-path))
+(setq erlang-root-dir "/opt/local/lib/erlang")
+(setq exec-path (cons "/opt/local/bin" exec-path))
+(require 'erlang-start)
+
+;; This is needed for Distel setup
+(let ((distel-dir "~/.emacs.d/vendor/distel/elisp"))
+(unless (member distel-dir load-path)
+;; Add distel-dir to the end of load-path
+(setq load-path (append load-path (list distel-dir)))))
+
+(require 'distel)
+(distel-setup)
+
+;; A number of the erlang-extended-mode key bindings are useful in the shell too
+(defconst distel-shell-keys
+ '(("TAB"      erl-complete)
+   ("\M-."      erl-find-source-under-point)
+   ("\M-,"      erl-find-source-unwind)
+   ("\M-*"      erl-find-source-unwind)
+  )
+  "Additional keys to bind when in Erlang shell.")
+
+(add-hook 'erlang-mode-hook
+	  (lambda ()
+	    ;; when starting an Erlang shell in Emacs, default in the node name
+	    (setq inferior-erlang-machine-options '("-sname" "emacs"))
+	    ;; add Erlang functions to an imenu menu
+	    (imenu-add-to-menubar "imenu")))
+
+;; erlang-shell
+(add-hook 'erlang-shell-mode-hook
+	  (lambda ()
+	    ;; add some Distel bindings to the Erlang shell
+	    (dolist (spec distel-shell-keys)
+	      (define-key erlang-shell-mode-map (car spec) (cadr spec)))))
 
 ;; configs
 
@@ -158,19 +198,20 @@ middle"
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 (custom-set-variables
- '(scroll-bar-mode nil)
- '(tool-bar-mode nil)
- '(scroll-step 1)
- '(global-hl-line-mode 1)
- '(inhibit-startup-screen t)
+ '(auto-save-file-name-transforms (quote ((".*" "~/.emacs.d/autosaves/\\1" t))))
+ '(backup-directory-alist (quote ((".*" . "~/.emacs.d/backups/"))))
+ '(default-tab-width 4 t)
  '(desktop-save-mode 1)
- '(default-tab-width 4)
- '(winner-mode t nil (winner))
+ '(global-hl-line-mode 1)
  '(indent-tabs-mode nil)
+ '(inhibit-startup-screen t)
  '(initial-scratch-message nil)
  '(require-final-newline t)
- '(auto-save-file-name-transforms '((".*" "~/.emacs.d/autosaves/\\1" t)))
- '(backup-directory-alist '((".*" . "~/.emacs.d/backups/"))))
+ '(scroll-bar-mode nil)
+ '(scroll-step 1)
+ '(tabbar-separator (quote (0.5)))
+ '(tool-bar-mode nil)
+ '(winner-mode t nil (winner)))
 
 ;; create the autosave dir if necessary, since emacs won't.
 (make-directory "~/.emacs.d/autosaves" t)
@@ -214,8 +255,7 @@ middle"
 
 ;; Change padding of the tabs
 ;; we also need to set separator to avoid overlapping tabs by highlighted tabs
-(custom-set-variables
- '(tabbar-separator (quote (0.5))))
+
 ;; adding spaces
 (defun tabbar-buffer-tab-label (tab)
   "Return a label for TAB.
