@@ -4,7 +4,8 @@
 (add-to-list 'load-path "~/.emacs.d/emacs-color-theme-solarized")
 (load-theme 'solarized-dark t)
 
-;; git
+;; git-emacs
+;; http://files.taesoo.org/git-emacs/git-emacs.html
 (add-to-list 'load-path "~/.emacs.d/vendor/git-emacs")
 (require 'git-emacs)
 
