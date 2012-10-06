@@ -4,8 +4,7 @@
 (add-to-list 'load-path "~/.emacs.d/emacs-color-theme-solarized")
 (load-theme 'solarized-dark t)
 
-;; git-emacs
-;; http://files.taesoo.org/git-emacs/git-emacs.html
+;; git
 (add-to-list 'load-path "~/.emacs.d/vendor/git-emacs")
 (require 'git-emacs)
 
@@ -15,18 +14,6 @@
 (add-to-list 'load-path "~/.emacs.d/vendor/workspaces")
 (load-library "workspaces.el")
 (global-set-key "\C-xg" 'workspace-goto)
-
-;; pep8
-(when (load "flymake" t)
- (defun flymake-pylint-init ()
-   (let* ((temp-file (flymake-init-create-temp-buffer-copy
-                      'flymake-create-temp-inplace))
-          (local-file (file-relative-name
-                       temp-file
-                       (file-name-directory buffer-file-name))))
-         (list "~/.emacs.d/pep8.py" (list local-file))))
-     (add-to-list 'flymake-allowed-file-name-masks
-                  '("\\.py\\'" flymake-pylint-init)))
 
 ;; clevercss mode
 ;; git://github.com/jschaf/CleverCSS-Mode.git
@@ -285,3 +272,20 @@ That is, a string used to represent it on the tab bar."
 ;; python-mode
 ;; https://github.com/gabrielelanaro/emacs-for-python
 (load-file "~/.emacs.d/vendor/emacs-for-python/epy-init.el")
+
+;; pep8, pyflakes
+;; http://yamakk.com/blog/2010/05/01/pep8-flymake-emacs/
+(add-hook 'python-mode-hook
+          '(lambda ()
+             (flymake-mode t)))
+(load-library "flymake-cursor.el")
+(when (load "flymake" t)
+  (defun flymake-pylint-init ()
+    (let* ((temp-file (flymake-init-create-temp-buffer-copy
+                       'flymake-create-temp-inplace))
+           (local-file (file-relative-name
+                        temp-file
+                        (file-name-directory buffer-file-name))))
+      (list "~/.emacs.d/pycheker.sh" (list local-file))))
+  (add-to-list 'flymake-allowed-file-name-masks
+               '("\\.py\\'" flymake-pylint-init)))
