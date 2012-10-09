@@ -272,20 +272,9 @@ That is, a string used to represent it on the tab bar."
 ;; python-mode
 ;; https://github.com/gabrielelanaro/emacs-for-python
 (load-file "~/.emacs.d/vendor/emacs-for-python/epy-init.el")
+(epy-setup-checker "~/.emacs.d/pycheker.sh %f")
 
-;; pep8, pyflakes
-;; http://yamakk.com/blog/2010/05/01/pep8-flymake-emacs/
-(add-hook 'python-mode-hook
-          '(lambda ()
-             (flymake-mode t)))
-(load-library "flymake-cursor.el")
-(when (load "flymake" t)
-  (defun flymake-pylint-init ()
-    (let* ((temp-file (flymake-init-create-temp-buffer-copy
-                       'flymake-create-temp-inplace))
-           (local-file (file-relative-name
-                        temp-file
-                        (file-name-directory buffer-file-name))))
-      (list "~/.emacs.d/pycheker.sh" (list local-file))))
-  (add-to-list 'flymake-allowed-file-name-masks
-               '("\\.py\\'" flymake-pylint-init)))
+;; autocomplete
+;; http://chrispoole.com/project/ac-python/
+(add-to-list 'load-path "~/.emacs.d/vendor")
+(require 'ac-python)
