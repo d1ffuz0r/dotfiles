@@ -205,64 +205,6 @@ middle"
 (make-directory "~/.emacs.d/autosaves" t)
 (make-directory "~/.emacs.d/backups" t)
 
-;; Tabbar
-(add-to-list 'load-path "~/.emacs.d/vendor/emhacks")
-(require 'tabbar)
-
-;; Tabbar hotkeys
-(global-set-key [(meta j)] 'tabbar-backward)
-(global-set-key [(meta k)] 'tabbar-forward)
-
-;; Tabbar settings
-(set-face-attribute
- 'tabbar-default nil
- :background "#002b36"
- :foreground "#073642"
- :box '(:line-width 1 :color "#073642" :style nil))
-(set-face-attribute
- 'tabbar-unselected nil
- :background "white"
- :foreground "#073642"
- :box '(:line-width 5 :color "#073642" :style nil))
-(set-face-attribute
- 'tabbar-selected nil
- :background "black"
- :foreground "white"
- :box '(:line-width 5 :color "#073642" :style nil))
-(set-face-attribute
- 'tabbar-highlight nil
- :background "gray75"
- :foreground "#073642"
- :underline nil
- :box '(:line-width 5 :color "#073642" :style nil))
-(set-face-attribute
- 'tabbar-button nil
- :background "#002b36"
- :foreground "#073642"
- :box '(:line-width 1 :color "#073642" :style nil))
-
-;; Change padding of the tabs
-;; we also need to set separator to avoid overlapping tabs by highlighted tabs
-
-;; adding spaces
-(defun tabbar-buffer-tab-label (tab)
-  "Return a label for TAB.
-That is, a string used to represent it on the tab bar."
-  (let ((label  (if tabbar--buffer-show-groups
-                    (format "[%s]  " (tabbar-tab-tabset tab))
-                  (format "%s  " (tabbar-tab-value tab)))))
-    ;; Unless the tab bar auto scrolls to keep the selected tab
-    ;; visible, shorten the tab label to keep as many tabs as possible
-    ;; in the visible area of the tab bar.
-    (if tabbar-auto-scroll-flag
-        label
-      (tabbar-shorten
-       label (max 1 (/ (window-width)
-                       (length (tabbar-view
-                                (tabbar-current-tabset)))))))))
-
-(tabbar-mode 1)
-
 ;; emacs-nav
 ;; http://code.google.com/p/emacs-nav/
 (add-to-list 'load-path "~/.emacs.d/vendor/emacs-nav")
