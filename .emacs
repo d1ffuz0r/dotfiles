@@ -1,8 +1,5 @@
-;; solarized theme
-;; git://github.com/sellout/emacs-color-theme-solarized.git
-(add-to-list 'custom-theme-load-path "~/.emacs.d/emacs-color-theme-solarized")
-(add-to-list 'load-path "~/.emacs.d/emacs-color-theme-solarized")
-(load-theme 'solarized-dark t)
+;; set theme
+(load-theme 'wombat t)
 
 ;; git
 (add-to-list 'load-path "~/.emacs.d/vendor/git-emacs")
@@ -19,7 +16,6 @@
 ;; git://github.com/jschaf/CleverCSS-Mode.git
 (add-to-list 'load-path "~/.emacs.d/vendor/clevercss-mode")
 (require 'clevercss)
-
 (add-to-list 'auto-mode-alist '("\\.ccss$" . clevercss-mode))
 
 ;; haml mode
