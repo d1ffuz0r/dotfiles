@@ -1,6 +1,9 @@
 ;; set theme
 (load-theme 'wombat t)
 
+;; start emacsserver
+(server-start)
+
 ;; git
 (add-to-list 'load-path "~/.emacs.d/vendor/git-emacs")
 (require 'git-emacs)
