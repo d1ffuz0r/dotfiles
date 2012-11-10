@@ -1,0 +1,11 @@
+[user]
+	name = d1ffuz0r
+	email = d1fffuz0r@gmail.com
+[color]
+	ui = 1
+[core]
+	excludesfile = ~/.gitignore_global
+	whitespace = cr-at-eol
+[alias]
+	ci = commit
+	st = status
