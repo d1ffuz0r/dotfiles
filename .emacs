@@ -1,6 +1,3 @@
-;; set theme
-(load-theme 'wombat t)
-
 ;; start emacsserver
 (server-start)
 
@@ -219,3 +216,11 @@ middle"
 ;; http://chrispoole.com/project/ac-python/
 (add-to-list 'load-path "~/.emacs.d/vendor")
 (require 'ac-python)
+
+;; clojure-mode
+(add-to-list 'load-path "~/.emacs.d/vendor/clojure-mode")
+(require 'clojure-mode)
+
+;; set theme
+(require 'django-theme)
+
