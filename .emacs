@@ -221,6 +221,11 @@ middle"
 (add-to-list 'load-path "~/.emacs.d/vendor/clojure-mode")
 (require 'clojure-mode)
 
+;; django-mode
+;; https://github.com/davidmiller/pony-mode
+(add-to-list 'load-path "~/.emacs.d/vendor/pony-mode")
+(require 'pony-mode)
+
 ;; set theme
 (require 'django-theme)
 
