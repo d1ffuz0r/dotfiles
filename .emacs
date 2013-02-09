@@ -195,7 +195,8 @@ middle"
  '(scroll-step 1)
  '(tabbar-separator (quote (0.5)))
  '(tool-bar-mode nil)
- '(winner-mode t nil (winner)))
+ '(winner-mode t nil (winner))
+ '(global-auto-revert-mode t))
 
 ;; create the autosave dir if necessary, since emacs won't.
 (make-directory "~/.emacs.d/autosaves" t)
@@ -228,4 +229,3 @@ middle"
 
 ;; set theme
 (require 'django-theme)
-
