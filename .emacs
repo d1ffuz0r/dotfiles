@@ -186,6 +186,7 @@ middle"
  '(backup-directory-alist (quote ((".*" . "~/.emacs.d/backups/"))))
  '(default-tab-width 4 t)
  '(desktop-save-mode 1)
+ '(global-auto-revert-mode t)
  '(global-hl-line-mode 1)
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
@@ -193,10 +194,13 @@ middle"
  '(require-final-newline t)
  '(scroll-bar-mode nil)
  '(scroll-step 1)
+ '(send-mail-function (quote smtpmail-send-it))
  '(tabbar-separator (quote (0.5)))
  '(tool-bar-mode nil)
- '(winner-mode t nil (winner))
- '(global-auto-revert-mode t))
+ '(winner-mode t nil (winner)))
+
+(put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)
 
 ;; create the autosave dir if necessary, since emacs won't.
 (make-directory "~/.emacs.d/autosaves" t)
