@@ -231,5 +231,10 @@ middle"
 (add-to-list 'load-path "~/.emacs.d/vendor/pony-mode")
 (require 'pony-mode)
 
+;; unittest-mode
+;; https://github.com/sjagoe/unittest-mode
+(add-to-list 'load-path "~/.emacs.d/vendor/unittest-mode")
+(require 'unittest)
+
 ;; set theme
 (require 'django-theme)
