@@ -3,14 +3,16 @@
 
 ;; git
 (add-to-list 'load-path "~/.emacs.d/vendor/git-emacs")
-(require 'git-emacs)
+(when (display-graphic-p)
+  (require 'git-emacs))
 
 ;; workspaces
 ;; http://www.emacswiki.org/emacs/workspaces.el
 ;; http://filonenko-mikhail.blogspot.com/2012/01/emacs-workspaces.html
 (add-to-list 'load-path "~/.emacs.d/vendor/workspaces")
-(load-library "workspaces.el")
-(global-set-key "\C-xg" 'workspace-goto)
+(when (display-graphic-p)
+  (load-library "workspaces.el")
+  (global-set-key "\C-xg" 'workspace-goto))
 
 ;; clevercss mode
 ;; git://github.com/jschaf/CleverCSS-Mode.git
@@ -187,7 +189,7 @@ middle"
  '(default-tab-width 4 t)
  '(desktop-save-mode 1)
  '(global-auto-revert-mode t)
- '(global-hl-line-mode 1)
+ '(global-hl-line-mode nil)
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
  '(initial-scratch-message nil)
@@ -197,6 +199,7 @@ middle"
  '(send-mail-function (quote smtpmail-send-it))
  '(tabbar-separator (quote (0.5)))
  '(tool-bar-mode nil)
+ '(unittest-last-executed-module "tests")
  '(winner-mode t nil (winner)))
 
 (put 'upcase-region 'disabled nil)
@@ -214,27 +217,30 @@ middle"
 
 ;; python-mode
 ;; https://github.com/gabrielelanaro/emacs-for-python
-(load-file "~/.emacs.d/vendor/emacs-for-python/epy-init.el")
-(epy-setup-checker "~/.emacs.d/pycheker.sh %f")
+(when (display-graphic-p)
+  (load-file "~/.emacs.d/vendor/emacs-for-python/epy-init.el")
+  (epy-setup-checker "~/.emacs.d/pycheker.sh %f"))
 
 ;; autocomplete
 ;; http://chrispoole.com/project/ac-python/
 (add-to-list 'load-path "~/.emacs.d/vendor")
-(require 'ac-python)
+(when (display-graphic-p)
+  (require 'ac-python))
 
 ;; clojure-mode
 (add-to-list 'load-path "~/.emacs.d/vendor/clojure-mode")
-(require 'clojure-mode)
+(when (display-graphic-p)
+  (require 'clojure-mode))
 
 ;; django-mode
 ;; https://github.com/davidmiller/pony-mode
 (add-to-list 'load-path "~/.emacs.d/vendor/pony-mode")
 (require 'pony-mode)
 
-;; unittest-mode
-;; https://github.com/sjagoe/unittest-mode
+;; unittest
 (add-to-list 'load-path "~/.emacs.d/vendor/unittest-mode")
 (require 'unittest)
 
 ;; set theme
-(require 'django-theme)
+(when (display-graphic-p)
+  (require 'django-theme))
