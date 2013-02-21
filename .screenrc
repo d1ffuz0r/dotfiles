@@ -1,0 +1,19 @@
+# Change scrollback to 10000 lines
+defscrollback 10000
+
+startup_message off
+
+vbell_msg "beep"
+
+# Left Right meta key mods
+ALT-,. and ALT-<>
+bindkey "^[<" eval number !echo $WINDOW-1|bc
+bindkey "^[>" eval number !echo $WINDOW+1|bc
+bindkey "^[," prev
+bindkey "^[." next
+
+
+# status line at the bottom
+hardstatus on
+hardstatus alwayslastline
+hardstatus string "%{.bW}%-w%{.rW}%f%n %t%{-}%+w %=%{..G}[%H %l] %{..Y} %m/%d %c "]
