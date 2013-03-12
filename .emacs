@@ -205,7 +205,7 @@ middle"
  '(scroll-step 1)
  '(scroll-conservatively 10000)
  '(auto-window-vscroll nil)
- '(iswitchb-mode 1))
+ '(iswitchb-mode t))
 
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
