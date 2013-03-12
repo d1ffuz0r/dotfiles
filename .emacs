@@ -3,16 +3,15 @@
 
 ;; git
 (add-to-list 'load-path "~/.emacs.d/vendor/git-emacs")
-(when (display-graphic-p)
-  (require 'git-emacs))
+(require 'git-emacs)
 
 ;; workspaces
 ;; http://www.emacswiki.org/emacs/workspaces.el
 ;; http://filonenko-mikhail.blogspot.com/2012/01/emacs-workspaces.html
+
 (add-to-list 'load-path "~/.emacs.d/vendor/workspaces")
-(when (display-graphic-p)
-  (load-library "workspaces.el")
-  (global-set-key "\C-xg" 'workspace-goto))
+(load-library "workspaces.el")
+(global-set-key "\C-xg" 'workspace-goto)
 
 ;; clevercss mode
 ;; git://github.com/jschaf/CleverCSS-Mode.git
@@ -119,7 +118,7 @@ middle"
   (cond
     ((eq 0 this-window-y-min) "top")
     ((eq (- fr-height 1) this-window-y-max) "bot")
-(  t "mid"))))
+(t "mid"))))
 
 (defun win-resize-left-or-right ()
   "Figure out if the current window is to the left, right or in the
@@ -200,7 +199,12 @@ middle"
  '(tabbar-separator (quote (0.5)))
  '(tool-bar-mode nil)
  '(unittest-last-executed-module "tests")
- '(winner-mode t nil (winner)))
+ '(winner-mode t nil (winner))
+ '(scroll-step 1)
+ '(mouse-wheel-scroll-amount '(1))
+ '(scroll-step 1)
+ '(scroll-conservatively 10000)
+ '(auto-window-vscroll nul))
 
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
@@ -217,20 +221,17 @@ middle"
 
 ;; python-mode
 ;; https://github.com/gabrielelanaro/emacs-for-python
-(when (display-graphic-p)
-  (load-file "~/.emacs.d/vendor/emacs-for-python/epy-init.el")
-  (epy-setup-checker "~/.emacs.d/pycheker.sh %f"))
+(load-file "~/.emacs.d/vendor/emacs-for-python/epy-init.el")
+(epy-setup-checker "~/.emacs.d/pycheker.sh %f")
 
 ;; autocomplete
 ;; http://chrispoole.com/project/ac-python/
 (add-to-list 'load-path "~/.emacs.d/vendor")
-(when (display-graphic-p)
-  (require 'ac-python))
+(require 'ac-python)
 
 ;; clojure-mode
 (add-to-list 'load-path "~/.emacs.d/vendor/clojure-mode")
-(when (display-graphic-p)
-  (require 'clojure-mode))
+(require 'clojure-mode)
 
 ;; django-mode
 ;; https://github.com/davidmiller/pony-mode
@@ -242,5 +243,4 @@ middle"
 (require 'unittest)
 
 ;; set theme
-(when (display-graphic-p)
-  (require 'django-theme))
+(require 'twilight-theme)
