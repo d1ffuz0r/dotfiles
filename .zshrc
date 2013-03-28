@@ -23,11 +23,11 @@ export PIP_RESPECT_VIRTUALENV=true
 # Python
 export PATH=$PATH:~/Library/Python/2.7/bin:~/Library/Python/2.7/lib
 export PATH=$PATH:~/Library/Python/3.3/bin:~/Library/Python/3.3/lib
+export PATH=$PATH:~/.local/bin
 
 # Aliases
 alias zshconfig="vim ~/.zshrc"
 alias hosts="sudo vim /etc/hosts"
 
 alias erl="erl -sname localhost"
-alias emacs="open -a /Applications/Emacs.app/Contents/MacOS/Emacs $1"
 alias ec='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient'
