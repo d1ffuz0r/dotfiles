@@ -5,6 +5,10 @@
 (add-to-list 'load-path "~/.emacs.d/vendor/git-emacs")
 (require 'git-emacs)
 
+;; mercurial
+(add-to-list 'load-path "~/.emacs.d/vendor/mercurial")
+(require 'mercurial)
+
 ;; workspaces
 ;; http://www.emacswiki.org/emacs/workspaces.el
 ;; http://filonenko-mikhail.blogspot.com/2012/01/emacs-workspaces.html
@@ -179,6 +183,8 @@ middle"
 (global-set-key "\C-x\C-g" 'goto-line)
 (global-set-key [?\C-#] 'comment-or-uncomment-region)
 (fset 'yes-or-no-p 'y-or-n-p)
+
+(setq ring-bell-function nil)
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
