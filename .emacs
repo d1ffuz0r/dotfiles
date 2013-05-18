@@ -1,6 +1,12 @@
 ;; start emacsserver
 (server-start)
 
+(set-face-attribute 'default nil
+                    :height 140
+                    :font "-apple-Ubuntu_Mono-medium-normal-normal-*-*-*-*-*-m-0-iso10646-1")
+
+(add-to-list 'load-path "~/.emacs.d/vendor")
+
 ;; git
 (add-to-list 'load-path "~/.emacs.d/vendor/git-emacs")
 (require 'git-emacs)
@@ -12,7 +18,6 @@
 ;; workspaces
 ;; http://www.emacswiki.org/emacs/workspaces.el
 ;; http://filonenko-mikhail.blogspot.com/2012/01/emacs-workspaces.html
-
 (add-to-list 'load-path "~/.emacs.d/vendor/workspaces")
 (load-library "workspaces.el")
 (global-set-key "\C-xg" 'workspace-goto)
@@ -233,7 +238,6 @@ middle"
 
 ;; autocomplete
 ;; http://chrispoole.com/project/ac-python/
-(add-to-list 'load-path "~/.emacs.d/vendor")
 (require 'ac-python)
 
 ;; clojure-mode
@@ -249,5 +253,8 @@ middle"
 (add-to-list 'load-path "~/.emacs.d/vendor/unittest-mode")
 (require 'unittest)
 
-;; set theme
-(require 'twilight-theme)
+;; html-mode-hook
+(add-hook 'html-mode-hook
+          (lambda()
+            (setq sgml-basic-offset 4)
+            (setq indent-tabs-mode t)))
