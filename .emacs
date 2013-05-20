@@ -256,5 +256,4 @@ middle"
 ;; html-mode-hook
 (add-hook 'html-mode-hook
           (lambda()
-            (setq sgml-basic-offset 4)
-            (setq indent-tabs-mode t)))
+            (setq sgml-basic-offset 4)))
