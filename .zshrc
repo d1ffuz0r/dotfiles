@@ -5,7 +5,7 @@ ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="robbyrussell"
 
 # Plugins
-plugins=(git os macports python virtualenvwrapper github pip django mercurial)
+plugins=(git osx macports python github pip django mercurial fabric colored-man)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -31,3 +31,4 @@ alias hosts="sudo vim /etc/hosts"
 
 alias erl="erl -sname localhost"
 alias ec='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient'
+alias smtp-python="sudo python -m smtpd -c DebuggingServer -n localhost:25"
