@@ -216,6 +216,7 @@ middle"
  '(scroll-step 1)
  '(scroll-conservatively 10000)
  '(auto-window-vscroll nil)
+ '(show-trailing-whitespace t)
  '(iswitchb-mode t))
 
 (put 'upcase-region 'disabled nil)
