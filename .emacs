@@ -1,6 +1,13 @@
 ;; start emacsserver
 (server-start)
 
+;; http://emacsredux.com/blog/2013/04/07/display-visited-files-path-in-the-frame-title/
+;; full path to opened file
+(setq frame-title-format
+      '((:eval (if (buffer-file-name)
+                   (abbreviate-file-name (buffer-file-name))
+                 "%b"))))
+
 ;(set-face-attribute 'default nil
 ;                    :height 140
 ;                    :font "-apple-Ubuntu_Mono-medium-normal-normal-*-*-*-*-*-m-0-iso10646-1")
