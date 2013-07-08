@@ -1,91 +1,90 @@
 ;; start emacsserver
 (server-start)
 
-;; http://emacsredux.com/blog/2013/04/07/display-visited-files-path-in-the-frame-title/
+;; packages settings
+(require 'package)
+(package-initialize)
+
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                         ("marmalade" . "http://marmalade-repo.org/packages/")
+                         ("melpa" . "http://melpa.milkbox.net/packages/")))
+;;(package-refresh-contents)
+
+(defun install-if-needed (package)
+  (unless (package-installed-p package)
+    (package-install package)))
+
+(defun add-to-load (path)
+  (add-to-list 'load-path (concat "~/.emacs.d/vendor/" path)))
+
+;; load packages
+(mapc 'install-if-needed '(haml-mode markdown-mode jinja2-mode
+                           coffee-mode clojure-mode pony-mode
+                           multiple-cursors workspaces twilight-theme))
+;; load local packages
+(mapc 'add-to-load '("" "git-emacs" "mercurial" "clevercss-mode" "unittest-mode"))
+
+
+;; require packages
+; markup
+(require 'haml-mode)
+(require 'markdown-mode)
+(require 'jinja2-mode)
+(require 'clevercss)
+; langs
+(require 'clojure-mode)
+(require 'coffee-mode)
+; python's modes
+(require 'pony-mode)
+(require 'ac-python)
+(require 'unittest)
+; vcs
+(require 'git-emacs)
+(require 'mercurial)
+; theme
+(require 'twilight-theme)
+; etc
+(require 'multiple-cursors)
+(load-library "workspaces.el")
+
+
 ;; full path to opened file
 (setq frame-title-format
       '((:eval (if (buffer-file-name)
                    (abbreviate-file-name (buffer-file-name))
                  "%b"))))
+;; font
+(set-face-attribute 'default nil :font "Menlo Regular-11")
 
-;(set-face-attribute 'default nil
-;                    :height 140
-;                    :font "-apple-Ubuntu_Mono-medium-normal-normal-*-*-*-*-*-m-0-iso10646-1")
-
-(set-face-attribute 'default nil
-                    :font "Menlo Regular-11")
-
-(add-to-list 'load-path "~/.emacs.d/vendor")
-
-;; set theme
-(require 'twilight-theme)
-
-(add-to-list 'load-path "~/.emacs.d/vendor/multiple-cursors")
-(require 'multiple-cursors)
+;; multiple-cursors
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
-;; git
-(add-to-list 'load-path "~/.emacs.d/vendor/git-emacs")
-(require 'git-emacs)
-
-;; mercurial
-(add-to-list 'load-path "~/.emacs.d/vendor/mercurial")
-(require 'mercurial)
-
 ;; workspaces
-;; http://www.emacswiki.org/emacs/workspaces.el
-;; http://filonenko-mikhail.blogspot.com/2012/01/emacs-workspaces.html
-(add-to-list 'load-path "~/.emacs.d/vendor/workspaces")
-(load-library "workspaces.el")
 (global-set-key "\C-xg" 'workspace-goto)
 
 ;; clevercss mode
 ;; git://github.com/jschaf/CleverCSS-Mode.git
-(add-to-list 'load-path "~/.emacs.d/vendor/clevercss-mode")
-(require 'clevercss)
 (add-to-list 'auto-mode-alist '("\\.ccss$" . clevercss-mode))
 
-;; haml mode
-;; git://github.com/rradonic/haml-mode.git
-(add-to-list 'load-path "~/.emacs.d/vendor/haml-mode")
-(require 'haml-mode)
-
-;; jinja2 mode
-;; git://github.com/paradoxxxzero/jinja2-mode.git
-(add-to-list 'load-path "~/.emacs.d/vendor/jinja2-mode")
-(require 'jinja2-mode)
-
-;; markdown mode
-;; http://jblevins.org/projects/markdown-mode/
-(add-to-list 'load-path "~/.emacs.d/vendor/markdown-mode")
-(require 'markdown-mode)
-
+;; markdown-mode
 (add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.mkd$" . markdown-mode))
 
 ;; coffeescript mode
-;; git://github.com/defunkt/coffee-mode.git
-(add-to-list 'load-path "~/.emacs.d/vendor/coffee-mode")
-(require 'coffee-mode)
-
 (add-to-list 'auto-mode-alist '("\\.coffee$" . coffee-mode))
 (add-to-list 'auto-mode-alist '("Cakefile" . coffee-mode))
 
 (defun coffee-custom ()
   "coffee-mode-hook"
-
   ;; CoffeeScript uses two spaces.
   (make-local-variable 'tab-width)
   (set 'tab-width 2)
-
   ;; If you don't want your compiled files to be wrapped
   (setq coffee-args-compile '("-c" "--bare"))
-
   ;; Emacs key binding
   (define-key coffee-mode-map [(meta r)] 'coffee-compile-buffer)
-
   ;; Compile '.coffee' files on every save
   (and (file-exists-p (buffer-file-name))
        (file-exists-p (coffee-compiled-file-name))
@@ -96,43 +95,43 @@
 ;; erlang mode
 ;; http://www.erlang.org/doc/apps/tools/erlang_mode_chapter.html
 ;; set erlang directories
-(setq load-path (cons  "/opt/local/lib/erlang/lib/tools-2.6.8/emacs"
-      load-path))
-(setq erlang-root-dir "/opt/local/lib/erlang")
-(setq exec-path (cons "/opt/local/bin" exec-path))
-(require 'erlang-start)
+;; (setq load-path (cons  "/opt/local/lib/erlang/lib/tools-2.6.8/emacs"
+;;       load-path))
+;; (setq erlang-root-dir "/opt/local/lib/erlang")
+;; (setq exec-path (cons "/opt/local/bin" exec-path))
+;; (require 'erlang-start)
 
-;; This is needed for Distel setup
-(let ((distel-dir "~/.emacs.d/vendor/distel/elisp"))
-(unless (member distel-dir load-path)
-;; Add distel-dir to the end of load-path
-(setq load-path (append load-path (list distel-dir)))))
+;; ;; This is needed for Distel setup
+;; (let ((distel-dir "~/.emacs.d/vendor/distel/elisp"))
+;; (unless (member distel-dir load-path)
+;; ;; Add distel-dir to the end of load-path
+;; (setq load-path (append load-path (list distel-dir)))))
 
-(require 'distel)
-(distel-setup)
+;; (require 'distel)
+;; (distel-setup)
 
-;; A number of the erlang-extended-mode key bindings are useful in the shell too
-(defconst distel-shell-keys
- '(("TAB"      erl-complete)
-   ("\M-."      erl-find-source-under-point)
-   ("\M-,"      erl-find-source-unwind)
-   ("\M-*"      erl-find-source-unwind)
-  )
-  "Additional keys to bind when in Erlang shell.")
+;; ;; A number of the erlang-extended-mode key bindings are useful in the shell too
+;; (defconst distel-shell-keys
+;;  '(("TAB"      erl-complete)
+;;    ("\M-."      erl-find-source-under-point)
+;;    ("\M-,"      erl-find-source-unwind)
+;;    ("\M-*"      erl-find-source-unwind)
+;;   )
+;;   "Additional keys to bind when in Erlang shell.")
 
-(add-hook 'erlang-mode-hook
-	  (lambda ()
-	    ;; when starting an Erlang shell in Emacs, default in the node name
-	    (setq inferior-erlang-machine-options '("-sname" "emacs"))
-	    ;; add Erlang functions to an imenu menu
-	    (imenu-add-to-menubar "imenu")))
+;; (add-hook 'erlang-mode-hook
+;; 	  (lambda ()
+;; 	    ;; when starting an Erlang shell in Emacs, default in the node name
+;; 	    (setq inferior-erlang-machine-options '("-sname" "emacs"))
+;; 	    ;; add Erlang functions to an imenu menu
+;; 	    (imenu-add-to-menubar "imenu")))
 
-;; erlang-shell
-(add-hook 'erlang-shell-mode-hook
-	  (lambda ()
-	    ;; add some Distel bindings to the Erlang shell
-	    (dolist (spec distel-shell-keys)
-	      (define-key erlang-shell-mode-map (car spec) (cadr spec)))))
+;; ;; erlang-shell
+;; (add-hook 'erlang-shell-mode-hook
+;; 	  (lambda ()
+;; 	    ;; add some Distel bindings to the Erlang shell
+;; 	    (dolist (spec distel-shell-keys)
+;; 	      (define-key erlang-shell-mode-map (car spec) (cadr spec)))))
 
 ;; configs
 
@@ -208,8 +207,6 @@ middle"
 (global-set-key [?\C-#] 'comment-or-uncomment-region)
 (fset 'yes-or-no-p 'y-or-n-p)
 
-(setq ring-bell-function nil)
-
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 (custom-set-variables
@@ -230,13 +227,12 @@ middle"
  '(tool-bar-mode nil)
  '(unittest-last-executed-module "tests")
  '(winner-mode t nil (winner))
- '(scroll-step 1)
  '(mouse-wheel-scroll-amount '(1))
- '(scroll-step 1)
  '(scroll-conservatively 10000)
  '(auto-window-vscroll nil)
  '(show-trailing-whitespace t)
- '(iswitchb-mode t))
+ '(iswitchb-mode t),
+ '(ring-bell-function nil))
 
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
@@ -245,33 +241,10 @@ middle"
 (make-directory "~/.emacs.d/autosaves" t)
 (make-directory "~/.emacs.d/backups" t)
 
-;; emacs-nav
-;; http://code.google.com/p/emacs-nav/
-(add-to-list 'load-path "~/.emacs.d/vendor/emacs-nav")
-(require 'nav)
-(global-set-key [f8] 'nav-toggle)
-
 ;; python-mode
 ;; https://github.com/gabrielelanaro/emacs-for-python
 (load-file "~/.emacs.d/vendor/emacs-for-python/epy-init.el")
 (epy-setup-checker "~/.emacs.d/pycheker.sh %f")
-
-;; autocomplete
-;; http://chrispoole.com/project/ac-python/
-(require 'ac-python)
-
-;; clojure-mode
-(add-to-list 'load-path "~/.emacs.d/vendor/clojure-mode")
-(require 'clojure-mode)
-
-;; django-mode
-;; https://github.com/davidmiller/pony-mode
-(add-to-list 'load-path "~/.emacs.d/vendor/pony-mode")
-(require 'pony-mode)
-
-;; unittest
-(add-to-list 'load-path "~/.emacs.d/vendor/unittest-mode")
-(require 'unittest)
 
 ;; html-mode-hook
 (add-hook 'html-mode-hook
@@ -281,15 +254,6 @@ middle"
 ;; http://emacsredux.com/blog/2013/05/22/smarter-navigation-to-the-beginning-of-a-line/
 ;; right C-a button
 (defun smarter-move-beginning-of-line (arg)
-  "Move point back to indentation of beginning of line.
-
-Move point to the first non-whitespace character on this line.
-If point is already there, move to the beginning of the line.
-Effectively toggle between the first non-whitespace character and
-the beginning of the line.
-
-If ARG is not nil or 1, move forward ARG - 1 lines first.  If
-point reaches the beginning or end of the buffer, stop there."
   (interactive "^p")
   (setq arg (or arg 1))
 
