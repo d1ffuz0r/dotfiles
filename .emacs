@@ -24,6 +24,10 @@
 ;; load local packages
 (mapc 'add-to-load '("" "git-emacs" "mercurial" "clevercss-mode" "unittest-mode"))
 
+;; ahg
+(defcustom ahg-hg-command "/usr/local/bin/hg"
+  "Command to use for invoking Mercurial."
+  :group 'ahg :type 'string)
 
 ;; require packages
 ; markup
@@ -38,15 +42,16 @@
 (require 'pony-mode)
 (require 'ac-python)
 (require 'unittest)
-; vcs
+; dvcs
 (require 'git-emacs)
-(require 'mercurial)
+(require 'ahg)
+;;(require 'mercurial)
 ; theme
 (require 'twilight-theme)
 ; etc
+(require 'writegood-mode)
 (require 'multiple-cursors)
 (load-library "workspaces.el")
-
 
 ;; full path to opened file
 (setq frame-title-format
@@ -61,11 +66,13 @@
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
+;; writegood-mode
+(global-set-key "\C-cg" 'writegood-mode)
+
 ;; workspaces
 (global-set-key "\C-xg" 'workspace-goto)
 
 ;; clevercss mode
-;; git://github.com/jschaf/CleverCSS-Mode.git
 (add-to-list 'auto-mode-alist '("\\.ccss$" . clevercss-mode))
 
 ;; markdown-mode
@@ -231,7 +238,7 @@ middle"
  '(scroll-conservatively 10000)
  '(auto-window-vscroll nil)
  '(show-trailing-whitespace t)
- '(iswitchb-mode t),
+ '(iswitchb-mode t)
  '(ring-bell-function nil))
 
 (put 'upcase-region 'disabled nil)

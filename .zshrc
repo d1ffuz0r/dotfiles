@@ -5,7 +5,7 @@ ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="robbyrussell"
 
 # Plugins
-plugins=(git osx macports python github pip django mercurial fabric colored-man)
+plugins=(virtualenvwrapper git osx macports python github pip django mercurial fabric colored-man)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -16,7 +16,7 @@ export MANPATH=$MANPATH:/opt/local/share/man
 # Virtualenvwrapper
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
 export WORKON_HOME=~/.virtualenvs
-source /usr/local/bin/virtualenvwrapper.sh
+source /usr/local/bin/virtualenvwrapper_lazy.sh
 export PIP_VIRTUALENV_BASE=$WORKON_HOME
 export PIP_RESPECT_VIRTUALENV=true
 
