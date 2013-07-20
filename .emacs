@@ -20,9 +20,10 @@
 ;; load packages
 (mapc 'install-if-needed '(haml-mode markdown-mode jinja2-mode
                            coffee-mode clojure-mode pony-mode
-                           multiple-cursors workspaces twilight-theme))
+                           multiple-cursors workspaces twilight-theme
+                           writegood-mode ahg))
 ;; load local packages
-(mapc 'add-to-load '("" "git-emacs" "mercurial" "clevercss-mode" "unittest-mode"))
+(mapc 'add-to-load '("" "git-emacs" "clevercss-mode" "unittest-mode"))
 
 ;; ahg
 (defcustom ahg-hg-command "/usr/local/bin/hg"
@@ -45,13 +46,13 @@
 ; dvcs
 (require 'git-emacs)
 (require 'ahg)
-;;(require 'mercurial)
 ; theme
 (require 'twilight-theme)
 ; etc
 (require 'writegood-mode)
 (require 'multiple-cursors)
 (load-library "workspaces.el")
+(load "~/.emacs.d/vendor/window-resize.el")
 
 ;; full path to opened file
 (setq frame-title-format
@@ -141,70 +142,6 @@
 ;; 	      (define-key erlang-shell-mode-map (car spec) (cadr spec)))))
 
 ;; configs
-
-(defun win-resize-top-or-bot ()
-  "Figure out if the current window is on top, bottom or in the
-middle"
-  (let* ((win-edges (window-edges))
-  (this-window-y-min (nth 1 win-edges))
-  (this-window-y-max (nth 3 win-edges))
-  (fr-height (frame-height)))
-  (cond
-    ((eq 0 this-window-y-min) "top")
-    ((eq (- fr-height 1) this-window-y-max) "bot")
-(t "mid"))))
-
-(defun win-resize-left-or-right ()
-  "Figure out if the current window is to the left, right or in the
-  middle"
-  (let* ((win-edges (window-edges))
-  (this-window-x-min (nth 0 win-edges))
-  (this-window-x-max (nth 2 win-edges))
-  (fr-width (frame-width)))
-  (cond
-    ((eq 0 this-window-x-min) "left")
-    ((eq (+ fr-width 4) this-window-x-max) "right")
-    (t "mid"))))
-
-(defun win-resize-enlarge-horiz ()
-  (interactive)
-  (cond
-    ((equal "top" (win-resize-top-or-bot)) (enlarge-window -1))
-    ((equal "bot" (win-resize-top-or-bot)) (enlarge-window 1))
-    ((equal "mid" (win-resize-top-or-bot)) (enlarge-window -1))
-    (t (message "nil"))))
-
-(defun win-resize-minimize-horiz ()
-  (interactive)
-  (cond
-    ((equal "top" (win-resize-top-or-bot)) (enlarge-window 1))
-    ((equal "bot" (win-resize-top-or-bot)) (enlarge-window -1))
-    ((equal "mid" (win-resize-top-or-bot)) (enlarge-window 1))
-    (t (message "nil"))))
-
-(defun win-resize-enlarge-vert ()
-  (interactive)
-  (cond
-    ((equal "left" (win-resize-left-or-right)) (enlarge-window-horizontally -1))
-    ((equal "right" (win-resize-left-or-right)) (enlarge-window-horizontally 1))
-    ((equal "mid" (win-resize-left-or-right)) (enlarge-window-horizontally -1))))
-
-(defun win-resize-minimize-vert ()
-  (interactive)
-  (cond
-    ((equal "left" (win-resize-left-or-right)) (enlarge-window-horizontally 1))
-    ((equal "right" (win-resize-left-or-right)) (enlarge-window-horizontally -1))
-    ((equal "mid" (win-resize-left-or-right)) (enlarge-window-horizontally 1))))
-
-(global-set-key [C-M-down] 'win-resize-mi2nimize-vert)
-(global-set-key [C-M-up] 'win-resize-enlarge-vert)
-(global-set-key [C-M-left] 'win-resize-minimize-horiz)
-(global-set-key [C-M-right] 'win-resize-enlarge-horiz)
-(global-set-key [C-M-up] 'win-resize-enlarge-horiz)
-(global-set-key [C-M-down] 'win-resize-minimize-horiz)
-(global-set-key [C-M-left] 'win-resize-enlarge-vert)
-(global-set-key [C-M-right] 'win-resize-minimize-vert)
-
 (global-set-key [?\C-,] 'previous-buffer)
 (global-set-key [?\C-.] 'next-buffer)
 (global-set-key [?\C-w] 'backward-kill-word)
