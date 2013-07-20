@@ -67,7 +67,7 @@
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
 ;; writegood-mode
-(global-set-key "\C-cg" 'writegood-mode)
+(global-set-key "\C-c\C-g" 'writegood-mode)
 
 ;; workspaces
 (global-set-key "\C-xg" 'workspace-goto)
