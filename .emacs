@@ -25,11 +25,6 @@
 ;; load local packages
 (mapc 'add-to-load '("" "git-emacs" "clevercss-mode" "unittest-mode"))
 
-;; ahg
-(defcustom ahg-hg-command "/usr/local/bin/hg"
-  "Command to use for invoking Mercurial."
-  :group 'ahg :type 'string)
-
 ;; require packages
 ; markup
 (require 'haml-mode)
