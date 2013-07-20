@@ -52,7 +52,7 @@
 (require 'writegood-mode)
 (require 'multiple-cursors)
 (load-library "workspaces.el")
-(load "~/.emacs.d/vendor/window-resize.el")
+(load "window-resize.el")
 
 ;; full path to opened file
 (setq frame-title-format
