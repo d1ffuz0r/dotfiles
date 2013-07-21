@@ -65,6 +65,11 @@
 ;; writegood-mode
 (global-set-key "\C-c\C-g" 'writegood-mode)
 
+;; flyspell
+(add-hook 'writegood-mode-hook
+           (lambda()
+             (flyspell-mode)))
+
 ;; workspaces
 (global-set-key "\C-xg" 'workspace-goto)
 
@@ -145,6 +150,7 @@
 (global-set-key "\C-x\C-g" 'goto-line)
 (global-set-key [?\C-#] 'comment-or-uncomment-region)
 (fset 'yes-or-no-p 'y-or-n-p)
+(windmove-default-keybindings 'meta)
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
@@ -152,7 +158,7 @@
  '(auto-save-file-name-transforms (quote ((".*" "~/.emacs.d/autosaves/\\1" t))))
  '(backup-directory-alist (quote ((".*" . "~/.emacs.d/backups/"))))
  '(default-tab-width 4 t)
- '(desktop-save-mode 1)
+ '(desktop-save-mode t)
  '(global-auto-revert-mode t)
  '(global-hl-line-mode nil)
  '(indent-tabs-mode nil)
