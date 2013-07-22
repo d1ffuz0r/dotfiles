@@ -28,6 +28,7 @@ export PATH=$PATH:~/.local/bin
 # Aliases
 alias zshconfig="vim ~/.zshrc"
 alias hosts="sudo vim /etc/hosts"
+alias phrep="pgrep -L"
 
 alias erl="erl -sname localhost"
 alias ec='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient'
