@@ -21,9 +21,10 @@
 (mapc 'install-if-needed '(haml-mode markdown-mode jinja2-mode
                            coffee-mode clojure-mode pony-mode
                            multiple-cursors workspaces twilight-theme
-                           writegood-mode ahg))
+                           writegood-mode))
 ;; load local packages
-(mapc 'add-to-load '("" "git-emacs" "clevercss-mode" "unittest-mode"))
+(mapc 'add-to-load '("" "git-emacs" "mercurial" "clevercss-mode"
+                     "unittest-mode"))
 
 ;; require packages
 ; markup
@@ -40,7 +41,7 @@
 (require 'unittest)
 ; dvcs
 (require 'git-emacs)
-(require 'ahg)
+(require 'mercurial)
 ; theme
 (require 'twilight-theme)
 ; etc
@@ -64,11 +65,6 @@
 
 ;; writegood-mode
 (global-set-key "\C-c\C-g" 'writegood-mode)
-
-;; flyspell
-(add-hook 'writegood-mode-hook
-           (lambda()
-             (flyspell-mode)))
 
 ;; workspaces
 (global-set-key "\C-xg" 'workspace-goto)
@@ -150,7 +146,6 @@
 (global-set-key "\C-x\C-g" 'goto-line)
 (global-set-key [?\C-#] 'comment-or-uncomment-region)
 (fset 'yes-or-no-p 'y-or-n-p)
-(windmove-default-keybindings 'meta)
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
