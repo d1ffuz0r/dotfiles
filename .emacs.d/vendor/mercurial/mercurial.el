@@ -695,13 +695,17 @@ Always returns a valid, hopefully sane, position."
     (when mark-context
       (set-mark (hg-find-context mark-context)))))
 
+(defun get-current-branch ()
+  "Get current branch name"
+  (hg-strip (hg-run0 "branch")))
 
+
 ;;; Hooks.
 
 (defun hg-mode-line-internal (status parents)
   (setq hg-status status
 	hg-mode (and status (concat " Hg"
-                    (concat "(" (hg-strip (hg-run0 "branch")) "):")
+                    (concat "[" (get-current-branch) "]:")
 				    parents
 				    (cdr (assq status
 					       '((normal . "")
