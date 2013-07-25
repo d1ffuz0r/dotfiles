@@ -1,6 +1,3 @@
-;; start emacsserver
-(server-start)
-
 ;; packages settings
 (require 'package)
 (package-initialize)

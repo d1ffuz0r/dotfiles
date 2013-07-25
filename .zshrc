@@ -28,8 +28,8 @@ export PATH=$PATH:~/.local/bin
 # Aliases
 alias zshconfig="vim ~/.zshrc"
 alias hosts="sudo vim /etc/hosts"
-alias phrep="pgrep -L"
+alias pgrep="pgrep -L"
 
 alias erl="erl -sname localhost"
-alias ec='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient'
+alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
 alias smtp-python="sudo python -m smtpd -c DebuggingServer -n localhost:25"
