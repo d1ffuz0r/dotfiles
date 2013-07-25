@@ -700,7 +700,8 @@ Always returns a valid, hopefully sane, position."
 
 (defun hg-mode-line-internal (status parents)
   (setq hg-status status
-	hg-mode (and status (concat " Hg:"
+	hg-mode (and status (concat " Hg"
+                    (concat "(" (hg-strip (hg-run0 "branch")) "):")
 				    parents
 				    (cdr (assq status
 					       '((normal . "")
