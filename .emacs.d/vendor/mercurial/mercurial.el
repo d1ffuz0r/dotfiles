@@ -695,9 +695,10 @@ Always returns a valid, hopefully sane, position."
     (when mark-context
       (set-mark (hg-find-context mark-context)))))
 
-(defun get-current-branch ()
+(defun hg-get-current-branch ()
   "Get current branch name"
-  (hg-strip (hg-run0 "branch")))
+  (hg-chomp (hg-run0 "branch")))
+
 
 
 ;;; Hooks.
@@ -705,7 +706,7 @@ Always returns a valid, hopefully sane, position."
 (defun hg-mode-line-internal (status parents)
   (setq hg-status status
 	hg-mode (and status (concat " Hg"
-                    (concat "[" (get-current-branch) "]:")
+                    (concat "[" (hg-get-current-branch) "]:")
 				    parents
 				    (cdr (assq status
 					       '((normal . "")
@@ -1206,6 +1207,17 @@ displays a diff and asks for confirmation before reverting."
     (set-buffer obuf)
     (when diff
       (hg-revert-buffer-internal))))
+
+  )
+
+(defun hg-resolve-mark-buffer ()
+  "Mark current buffer as resolved to merge"
+  (interactive)
+  (let ((path (buffer-file-name))
+        (buffer (current-buffer)))
+    (message "Mark buffer \"%s\" as resolved" buffer)
+    (hg-run0 "resolve" path "--mark")
+    (message "Buffer \"%s\" has marked as resolved" buffer)))
 
 (defun hg-root (&optional path)
   "Return the root of the repository that contains the given path.
