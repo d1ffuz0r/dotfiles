@@ -1208,8 +1208,6 @@ displays a diff and asks for confirmation before reverting."
     (when diff
       (hg-revert-buffer-internal))))
 
-  )
-
 (defun hg-resolve-mark-buffer ()
   "Mark current buffer as resolved to merge"
   (interactive)
