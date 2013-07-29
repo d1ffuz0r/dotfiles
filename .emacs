@@ -61,10 +61,10 @@
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
 ;; writegood-mode
-(global-set-key "\C-c\C-g" 'writegood-mode)
+(global-set-key (kbd "C-c C-g") 'writegood-mode)
 
 ;; workspaces
-(global-set-key "\C-xg" 'workspace-goto)
+(global-set-key (kbd "C-x g") 'workspace-goto)
 
 ;; clevercss mode
 (add-to-list 'auto-mode-alist '("\\.ccss$" . clevercss-mode))
@@ -134,14 +134,14 @@
 ;; 	    (dolist (spec distel-shell-keys)
 ;; 	      (define-key erlang-shell-mode-map (car spec) (cadr spec)))))
 
-;; configs
-(global-set-key [?\C-,] 'previous-buffer)
-(global-set-key [?\C-.] 'next-buffer)
-(global-set-key [?\C-w] 'backward-kill-word)
-(global-set-key "\C-x\C-k" 'kill-region)
-(global-set-key "\C-c\C-k" 'kill-buffer-and-window)
-(global-set-key "\C-x\C-g" 'goto-line)
-(global-set-key [?\C-#] 'comment-or-uncomment-region)
+;; keys
+(global-set-key (kbd "C-,") 'previous-buffer)
+(global-set-key (kbd "C-.") 'next-buffer)
+(global-set-key (kbd "C-w") 'backward-kill-word)
+(global-set-key (kbd "C-x C-k") 'kill-region)
+(global-set-key (kbd "C-c C-k") 'kill-buffer-and-window)
+(global-set-key (kbd "C-x C-g") 'goto-line)
+(global-set-key (kbd "C-#") 'comment-or-uncomment-region)
 (fset 'yes-or-no-p 'y-or-n-p)
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
