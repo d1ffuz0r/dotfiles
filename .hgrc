@@ -4,6 +4,7 @@ username = d1ffuz0r <d1fffuz0r@gmail.com>
 [extensions]
 highlight =
 histedit =
+progress =
 mq =
 pager =
 rebase =
