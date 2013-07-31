@@ -2,4 +2,12 @@
 username = d1ffuz0r <d1fffuz0r@gmail.com>
 
 [extensions]
+highlight =
+histedit =
+mq =
+pager =
+rebase =
+transplant =
+graphlog =
 color =
+prompt = ~/.hgprompt.py
