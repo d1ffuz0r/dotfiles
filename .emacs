@@ -17,8 +17,8 @@
 ;; load packages
 (mapc 'install-if-needed '(haml-mode markdown-mode jinja2-mode
                            coffee-mode clojure-mode pony-mode
-                           multiple-cursors workspaces twilight-theme
-                           writegood-mode))
+                           multiple-cursors workspaces monokai-theme
+                           writegood-mode dash-at-point))
 ;; load local packages
 (mapc 'add-to-load '("" "git-emacs" "mercurial" "clevercss-mode"
                      "unittest-mode"))
@@ -34,16 +34,17 @@
 (require 'coffee-mode)
 ; python's modes
 (require 'pony-mode)
-(require 'ac-python)
 (require 'unittest)
 ; dvcs
 (require 'git-emacs)
 (require 'mercurial)
 ; theme
-(require 'twilight-theme)
+(require 'monokai-theme)
 ; etc
 (require 'writegood-mode)
 (require 'multiple-cursors)
+(require 'dash-at-point)
+; libraries
 (load-library "workspaces.el")
 (load "window-resize.el")
 
@@ -54,6 +55,9 @@
                  "%b"))))
 ;; font
 (set-face-attribute 'default nil :font "Menlo Regular-11")
+
+;; dash
+(global-set-key (kbd "C-c d") 'dash-at-point)
 
 ;; multiple-cursors
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
@@ -180,8 +184,11 @@
 
 ;; python-mode
 ;; https://github.com/gabrielelanaro/emacs-for-python
-(load-file "~/.emacs.d/vendor/emacs-for-python/epy-init.el")
-(epy-setup-checker "~/.emacs.d/pycheker.sh %f")
+(add-hook 'python-mode-hook
+          (lambda()
+            (load-file "~/.emacs.d/vendor/emacs-for-python/epy-init.el")
+            (epy-setup-checker "~/.emacs.d/pycheker.sh %f")
+            (require 'ac-python)))
 
 ;; html-mode-hook
 (add-hook 'html-mode-hook
