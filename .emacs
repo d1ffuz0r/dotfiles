@@ -32,7 +32,7 @@
 ; langs
 (require 'clojure-mode)
 (require 'coffee-mode)
-; python's modes
+; python modes
 (require 'pony-mode)
 (require 'unittest)
 ; dvcs
@@ -81,62 +81,29 @@
 (add-to-list 'auto-mode-alist '("\\.coffee$" . coffee-mode))
 (add-to-list 'auto-mode-alist '("Cakefile" . coffee-mode))
 
-(defun coffee-custom ()
-  "coffee-mode-hook"
-  ;; CoffeeScript uses two spaces.
-  (make-local-variable 'tab-width)
-  (set 'tab-width 2)
-  ;; If you don't want your compiled files to be wrapped
-  (setq coffee-args-compile '("-c" "--bare"))
-  ;; Emacs key binding
-  (define-key coffee-mode-map [(meta r)] 'coffee-compile-buffer)
-  ;; Compile '.coffee' files on every save
-  (and (file-exists-p (buffer-file-name))
-       (file-exists-p (coffee-compiled-file-name))
-       (coffee-cos-mode t)))
+;; coffee-mode-hook
+(add-hook 'coffee-mode-hook
+          (lambda ()
+            (make-local-variable 'tab-width)
+            (set 'tab-width 2)
+            ;; If you don't want your compiled files to be wrapped
+            (setq coffee-args-compile '("-c" "--bare"))
+            ;; Emacs key binding
+            (define-key coffee-mode-map [(meta r)] 'coffee-compile-buffer)
+            ;; Compile '.coffee' files on every save
+            (and (file-exists-p (buffer-file-name))
+                       (file-exists-p (coffee-compiled-file-name))
+                       (coffee-cos-mode t))))
 
-(add-hook 'coffee-mode-hook 'coffee-custom)
+;; html-mode-hook
+(add-hook 'html-mode-hook
+          (lambda()
+            (setq sgml-basic-offset 4)))
 
-;; erlang mode
-;; http://www.erlang.org/doc/apps/tools/erlang_mode_chapter.html
-;; set erlang directories
-;; (setq load-path (cons  "/opt/local/lib/erlang/lib/tools-2.6.8/emacs"
-;;       load-path))
-;; (setq erlang-root-dir "/opt/local/lib/erlang")
-;; (setq exec-path (cons "/opt/local/bin" exec-path))
-;; (require 'erlang-start)
-
-;; ;; This is needed for Distel setup
-;; (let ((distel-dir "~/.emacs.d/vendor/distel/elisp"))
-;; (unless (member distel-dir load-path)
-;; ;; Add distel-dir to the end of load-path
-;; (setq load-path (append load-path (list distel-dir)))))
-
-;; (require 'distel)
-;; (distel-setup)
-
-;; ;; A number of the erlang-extended-mode key bindings are useful in the shell too
-;; (defconst distel-shell-keys
-;;  '(("TAB"      erl-complete)
-;;    ("\M-."      erl-find-source-under-point)
-;;    ("\M-,"      erl-find-source-unwind)
-;;    ("\M-*"      erl-find-source-unwind)
-;;   )
-;;   "Additional keys to bind when in Erlang shell.")
-
-;; (add-hook 'erlang-mode-hook
-;; 	  (lambda ()
-;; 	    ;; when starting an Erlang shell in Emacs, default in the node name
-;; 	    (setq inferior-erlang-machine-options '("-sname" "emacs"))
-;; 	    ;; add Erlang functions to an imenu menu
-;; 	    (imenu-add-to-menubar "imenu")))
-
-;; ;; erlang-shell
-;; (add-hook 'erlang-shell-mode-hook
-;; 	  (lambda ()
-;; 	    ;; add some Distel bindings to the Erlang shell
-;; 	    (dolist (spec distel-shell-keys)
-;; 	      (define-key erlang-shell-mode-map (car spec) (cadr spec)))))
+;; python-mode
+(load-file "~/.emacs.d/vendor/emacs-for-python/epy-init.el")
+(epy-setup-checker "~/.emacs.d/pycheker.sh %f")
+(require 'ac-python)
 
 ;; keys
 (global-set-key (kbd "C-,") 'previous-buffer)
@@ -146,6 +113,7 @@
 (global-set-key (kbd "C-c C-k") 'kill-buffer-and-window)
 (global-set-key (kbd "C-x C-g") 'goto-line)
 (global-set-key (kbd "C-#") 'comment-or-uncomment-region)
+(global-set-key (kbd "C-c g") 'rgrep)
 (fset 'yes-or-no-p 'y-or-n-p)
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
@@ -181,19 +149,6 @@
 ;; create the autosave dir if necessary, since emacs won't.
 (make-directory "~/.emacs.d/autosaves" t)
 (make-directory "~/.emacs.d/backups" t)
-
-;; python-mode
-;; https://github.com/gabrielelanaro/emacs-for-python
-(add-hook 'python-mode-hook
-          (lambda()
-            (load-file "~/.emacs.d/vendor/emacs-for-python/epy-init.el")
-            (epy-setup-checker "~/.emacs.d/pycheker.sh %f")
-            (require 'ac-python)))
-
-;; html-mode-hook
-(add-hook 'html-mode-hook
-          (lambda()
-            (setq sgml-basic-offset 4)))
 
 ;; http://emacsredux.com/blog/2013/05/22/smarter-navigation-to-the-beginning-of-a-line/
 ;; right C-a button
