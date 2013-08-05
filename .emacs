@@ -45,8 +45,8 @@
 (require 'multiple-cursors)
 (require 'dash-at-point)
 ; libraries
+(require 'window-resize)
 (load-library "workspaces.el")
-(load "window-resize.el")
 
 ;; full path to opened file
 (setq frame-title-format

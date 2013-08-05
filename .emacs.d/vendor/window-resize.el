@@ -61,3 +61,5 @@ middle"
 (global-set-key [C-M-down] 'win-resize-minimize-horiz)
 (global-set-key [C-M-left] 'win-resize-enlarge-vert)
 (global-set-key [C-M-right] 'win-resize-minimize-vert)
+
+(provide 'window-resize)
