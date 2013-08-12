@@ -1,7 +1,7 @@
 (defun add-to-load (path)
   (add-to-list 'load-path (concat "~/.emacs.d/vendor/" path)))
 
-(setq local-modes '("" "git-emacs" "mercurial" "clevercss-mode" "unittest-mode"))
+(setq local-modes '("" "git-emacs" "mercurial" "unittest-mode"))
 (setq install-modes '(haml-mode markdown-mode jinja2-mode
                       coffee-mode clojure-mode pony-mode
                       multiple-cursors workspaces monokai-theme
@@ -16,7 +16,6 @@
 (require 'haml-mode)
 (require 'markdown-mode)
 (require 'jinja2-mode)
-(require 'clevercss)
 ; languages
 (require 'clojure-mode)
 (require 'coffee-mode)
@@ -52,9 +51,6 @@
 
 ;; workspaces
 (global-set-key (kbd "C-x g") 'workspace-goto)
-
-;; clevercss-mode
-(add-to-list 'auto-mode-alist '("\\.ccss$" . clevercss-mode))
 
 ;; markdown-mode
 (add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
@@ -92,9 +88,7 @@
 (global-set-key (kbd "C-c C-k") 'kill-buffer-and-window)
 (global-set-key (kbd "C-x C-g") 'goto-line)
 (global-set-key (kbd "C-c g") 'rgrep)
-(fset 'yes-or-no-p 'y-or-n-p)
 
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 (custom-set-variables
  '(auto-save-file-name-transforms (quote ((".*" "~/.emacs.d/autosaves/\\1" t))))
