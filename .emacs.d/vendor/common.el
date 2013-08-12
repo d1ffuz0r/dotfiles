@@ -68,4 +68,16 @@
 (put 'downcase-region 'disabled nil)
 
 
+;; ---------------------------------
+;; common hooks
+;; ---------------------------------
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+
+;; ---------------------------------
+;; common settings
+;; ---------------------------------
+(fset 'yes-or-no-p 'y-or-n-p)
+
+
 (provide 'common)

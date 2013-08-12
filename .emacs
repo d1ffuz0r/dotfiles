@@ -87,13 +87,10 @@
 (require 'ac-python)
 
 ;; keys
-(global-set-key (kbd "C-,") 'previous-buffer)
-(global-set-key (kbd "C-.") 'next-buffer)
 (global-set-key (kbd "C-w") 'backward-kill-word)
 (global-set-key (kbd "C-x C-k") 'kill-region)
 (global-set-key (kbd "C-c C-k") 'kill-buffer-and-window)
 (global-set-key (kbd "C-x C-g") 'goto-line)
-(global-set-key (kbd "C-#") 'comment-or-uncomment-region)
 (global-set-key (kbd "C-c g") 'rgrep)
 (fset 'yes-or-no-p 'y-or-n-p)
 
