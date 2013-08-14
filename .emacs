@@ -5,7 +5,7 @@
 (setq install-modes '(haml-mode markdown-mode jinja2-mode
                       coffee-mode clojure-mode pony-mode
                       multiple-cursors workspaces monokai-theme
-                      writegood-mode dash-at-point dired+ dired-single))
+                      writegood-mode dash-at-point dired+))
 
 (mapc 'add-to-load local-modes)
 
@@ -27,7 +27,6 @@
 (require 'mercurial)
 ; dired
 (require 'dired+)
-(require 'dired-single)
 ; theme
 (require 'monokai-theme)
 ; etc
