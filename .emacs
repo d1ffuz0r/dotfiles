@@ -1,6 +1,7 @@
 (add-to-list 'load-path "~/.emacs.d/vendor/")
 
-(setq local-packages '("git-emacs" "mercurial" "unittest-mode"))
+(setq local-packages '("git-emacs" "mercurial" "unittest-mode"
+                       "emacs-for-python"))
 (setq install-packages '(haml-mode markdown-mode jinja2-mode
                          coffee-mode clojure-mode pony-mode
                          multiple-cursors workspaces monokai-theme
@@ -19,8 +20,10 @@
 (require 'clojure-mode)
 (require 'coffee-mode)
 ; python modes
-(require 'pony-mode)
+(require 'epy-init)
 (require 'unittest)
+(require 'pony-mode)
+(require 'ac-python)
 ; dvcs
 (require 'git-emacs)
 (require 'mercurial)
@@ -76,10 +79,8 @@
           (lambda()
             (setq sgml-basic-offset 4)))
 
-;; python-mode
-(load-file "~/.emacs.d/vendor/emacs-for-python/epy-init.el")
+;; pychecker
 (epy-setup-checker "~/.emacs.d/pycheker.sh %f")
-(require 'ac-python)
 
 ;; keys
 (global-set-key (kbd "C-w") 'backward-kill-word)
