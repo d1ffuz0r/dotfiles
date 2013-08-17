@@ -1,17 +1,16 @@
-(defun add-to-load (path)
-  (add-to-list 'load-path (concat "~/.emacs.d/vendor/" path)))
+(add-to-list 'load-path "~/.emacs.d/vendor/")
 
-(setq local-modes '("" "git-emacs" "mercurial" "unittest-mode"))
-(setq install-modes '(haml-mode markdown-mode jinja2-mode
-                      coffee-mode clojure-mode pony-mode
-                      multiple-cursors workspaces monokai-theme
-                      writegood-mode dash-at-point dired+))
+(setq local-packages '("git-emacs" "mercurial" "unittest-mode"))
+(setq install-packages '(haml-mode markdown-mode jinja2-mode
+                         coffee-mode clojure-mode pony-mode
+                         multiple-cursors workspaces monokai-theme
+                         writegood-mode dash-at-point dired+))
 
-(mapc 'add-to-load local-modes)
-
-;;(package-refresh-contents)
+;; (package-refresh-contents)
 ;; base
 (require 'common)
+; theme
+(require 'monokai-theme)
 ; markup
 (require 'haml-mode)
 (require 'markdown-mode)
@@ -27,8 +26,6 @@
 (require 'mercurial)
 ; dired
 (require 'dired+)
-; theme
-(require 'monokai-theme)
 ; etc
 (require 'writegood-mode)
 (require 'multiple-cursors)
@@ -93,26 +90,9 @@
 
 
 (custom-set-variables
- '(auto-save-file-name-transforms (quote ((".*" "~/.emacs.d/autosaves/\\1" t))))
- '(auto-window-vscroll nil t)
- '(backup-directory-alist (quote ((".*" . "~/.emacs.d/backups/"))))
  '(default-tab-width 4 t)
  '(desktop-save-mode t)
  '(global-auto-revert-mode t)
  '(global-hl-line-mode nil)
- '(indent-tabs-mode nil)
- '(inhibit-startup-screen t)
- '(initial-scratch-message nil)
  '(iswitchb-mode t)
- '(mouse-wheel-scroll-amount (quote (1)))
- '(require-final-newline t)
- '(ring-bell-function nil t)
- '(scroll-bar-mode nil)
- '(scroll-conservatively 10000)
- '(scroll-step 1)
- '(send-mail-function (quote smtpmail-send-it))
- '(show-trailing-whitespace t)
- '(tabbar-separator (quote (0.5)))
- '(tool-bar-mode nil)
- '(unittest-last-executed-module "tests")
  '(winner-mode t nil (winner)))

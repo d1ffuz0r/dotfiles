@@ -1,10 +1,3 @@
-;; C-a remapping
-;; full path to opened file in title
-;; packages
-;; autocreation backup directories
-;; enable lower/upper-region
-
-
 ;; ---------------------------------
 ;; packages
 ;; ---------------------------------
@@ -19,8 +12,12 @@
   (unless (package-installed-p package)
     (package-install package)))
 
-(mapc 'install-if-needed install-modes)
+(defun add-to-load (path)
+  (add-to-list 'load-path (concat "~/.emacs.d/vendor/" path)))
 
+(mapc 'install-if-needed install-packages)
+
+(mapc 'add-to-load local-packages)
 
 ;; ---------------------------------
 ;; full path to opened file
@@ -55,10 +52,15 @@
 
 
 ;; ---------------------------------
-;; create the autosave dir if necessary, since emacs won't.
+;; create the autosave/backup dir if necessary, since emacs won't
+;; and set autosave/backup directoriectories
 ;; ---------------------------------
 (make-directory "~/.emacs.d/autosaves" t)
 (make-directory "~/.emacs.d/backups" t)
+
+(custom-set-variables
+ '(auto-save-file-name-transforms (quote ((".*" "~/.emacs.d/autosaves/\\1" t))))
+ '(backup-directory-alist (quote ((".*" . "~/.emacs.d/backups/")))))
 
 
 ;; ---------------------------------
@@ -79,5 +81,19 @@
 ;; ---------------------------------
 (fset 'yes-or-no-p 'y-or-n-p)
 
+(custom-set-variables
+ '(auto-window-vscroll nil t)
+ '(scroll-bar-mode nil)
+ '(tool-bar-mode nil)
+ '(inhibit-startup-screen t)
+ '(initial-scratch-message nil)
+ '(indent-tabs-mode nil)
+ '(show-trailing-whitespace t)
+ '(ring-bell-function nil t)
+ '(scroll-step 1)
+ '(mouse-wheel-scroll-amount (quote (1)))
+ '(require-final-newline t)
+ '(scroll-conservatively 10000)
+ '(tabbar-separator (quote (0.5))))
 
 (provide 'common)
