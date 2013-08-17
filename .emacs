@@ -80,7 +80,7 @@
             (setq sgml-basic-offset 4)))
 
 ;; pychecker
-(epy-setup-checker "~/.emacs.d/pycheker.sh %f")
+(epy-setup-checker "~/.emacs.d/pychecker.sh %f")
 
 ;; keys
 (global-set-key (kbd "C-w") 'backward-kill-word)
