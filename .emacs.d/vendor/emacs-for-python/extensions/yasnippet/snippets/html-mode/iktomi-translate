@@ -1,6 +1,0 @@
-# -*- mode: snippet -*-
-# name: iktomi-translate
-# binding: C-c t
-# expand-env: ((yas/indent-line 'fixed) (yas/wrap-around-region 'auto))
-# --
-{{ t('$0') }}
