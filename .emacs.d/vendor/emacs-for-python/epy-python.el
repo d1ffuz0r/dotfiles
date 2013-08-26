@@ -1,55 +1,7 @@
 ;; epy-python.el - setup of python stuff
 
-;; fgallina/python.el
-(require 'python (concat epy-install-dir "extensions/python.el"))
-
 ;; pymacs
-(require 'pymacs (concat epy-install-dir "extensions/pymacs.el"))
-
-(defun setup-ropemacs ()
-  "Setup the ropemacs harness"
-  (message "****************************")
-  (if (and (getenv "PYTHONPATH") (not (string= (getenv "PYTHONPATH") "")))
-      (message "true")
-    (message "false"))
-  (message "****************************")
-  ;; If PYTHONPATH is set and not an empty string
-  (if (and (getenv "PYTHONPATH") (not (string= (getenv "PYTHONPATH") "")))
-      ;; append at the end with separator
-      (setenv "PYTHONPATH"
-	      (concat
-	       (getenv "PYTHONPATH") path-separator
-	       (concat epy-install-dir "python-libs/")))
-    ;; else set it without separator
-    (setenv "PYTHONPATH"
-	    (concat epy-install-dir "python-libs/"))
-    )
-  
-  (pymacs-load "ropemacs" "rope-")
-  
-  ;; Stops from erroring if there's a syntax err
-  (setq ropemacs-codeassist-maxfixes 3)
-
-  ;; Configurations
-  (setq ropemacs-guess-project t)
-  (setq ropemacs-enable-autoimport t)
-
-
-  (setq ropemacs-autoimport-modules '("os" "shutil" "sys" "logging"
-				      "django.*"))
-
- 
-
-  ;; Adding hook to automatically open a rope project if there is one
-  ;; in the current or in the upper level directory
-  (add-hook 'python-mode-hook
-            (lambda ()
-              (cond ((file-exists-p ".ropeproject")
-                     (rope-open-project default-directory))
-                    ((file-exists-p "../.ropeproject")
-                     (rope-open-project (concat default-directory "..")))
-                    )))
-  )
+;; (require 'pymacs (concat epy-install-dir "extensions/pymacs.el"))
 
 ;; Ipython integration with fgallina/python.el
 (defun epy-setup-ipython ()
@@ -70,11 +22,11 @@
 
 (defun flymake-create-copy-file ()
   "Create a copy local file"
-  (let* ((temp-file (flymake-init-create-temp-buffer-copy 
+  (let* ((temp-file (flymake-init-create-temp-buffer-copy
                      'flymake-create-temp-inplace)))
-    (file-relative-name 
-     temp-file 
-     (file-name-directory buffer-file-name))))     
+    (file-relative-name
+     temp-file
+     (file-name-directory buffer-file-name))))
 
 (defun flymake-command-parse (cmdline)
   "Parses the command line CMDLINE in a format compatible
@@ -108,19 +60,14 @@ The CMDLINE should be something like:
 (eval-after-load 'python
   '(progn
      ;;==================================================
-     ;; Ropemacs Configuration
-     ;;==================================================
-     (setup-ropemacs)
-
-     ;;==================================================
      ;; Virtualenv Commands
      ;;==================================================
      (autoload 'virtualenv-activate "virtualenv"
        "Activate a Virtual Environment specified by PATH" t)
      (autoload 'virtualenv-workon "virtualenv"
        "Activate a Virtual Environment present using virtualenvwrapper" t)
-     
-     
+
+
      ;; Not on all modes, please
      (add-hook 'python-mode-hook 'flymake-find-file-hook)
 
@@ -131,21 +78,13 @@ The CMDLINE should be something like:
        (require 'virtualenv)
        (virtualenv-activate virtualenv)
        (desktop-change-dir virtualenv))
-
-     
      )
   )
-;; Cython Mode
-(autoload 'cython-mode "cython-mode" "Mode for editing Cython source files")
-
-(add-to-list 'auto-mode-alist '("\\.pyx\\'" . cython-mode))
-(add-to-list 'auto-mode-alist '("\\.pxd\\'" . cython-mode))
-(add-to-list 'auto-mode-alist '("\\.pxi\\'" . cython-mode))
 
 ;; Py3 files
 (add-to-list 'auto-mode-alist '("\\.py3\\'" . python-mode))
 
-(add-hook 'python-mode-hook '(lambda () 
+(add-hook 'python-mode-hook '(lambda ()
      (define-key python-mode-map "\C-m" 'newline-and-indent)))
 
 (provide 'epy-python)

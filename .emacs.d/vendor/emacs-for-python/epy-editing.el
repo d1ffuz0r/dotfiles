@@ -13,24 +13,23 @@
 
 ;; Auto Completion
 (require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories 
+(add-to-list 'ac-dictionary-directories
 	     (concat epy-install-dir "auto-complete/ac-dict"))
 (ac-config-default)
 
 ;; Yasnippet - force the loading of the custom version of yasnippet
-(require 'yasnippet (concat epy-install-dir "extensions/yasnippet/yasnippet"))
+(require 'yasnippet)
+(require 'yasnippet-bundle)
 (load-file (concat epy-install-dir "extensions/snippet-helpers.el"))
 
 ;; this one is to activate django snippets
 (defun epy-django-snippets ()
   "Load django snippets"
   (interactive)
-  (yas/load-directory (concat epy-install-dir "snippets/django"))
-  )
+  (yas/load-directory (concat epy-install-dir "snippets/django")))
 
 
 (yas/initialize)
-(yas/load-directory (concat epy-install-dir "extensions/yasnippet/snippets"))
 (setq yas/prompt-functions '(yas/dropdown-prompt yas/ido-prompt yas/x-prompt))
 (setq yas/wrap-around-region 'cua)
 
@@ -160,7 +159,7 @@ original" (interactive)
 ;;(add-hook 'python-mode-hook 'highlight-indentation)
 
 ;; Line numbering
-(setq linum-format "%4d")
-(global-linum-mode 1)
+;; (setq linum-format "%4d")
+;; (global-linum-mode 1)
 
 (provide 'epy-editing)

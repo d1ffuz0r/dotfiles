@@ -2,11 +2,21 @@
 
 (setq local-packages '("git-emacs" "mercurial" "unittest-mode"
                        "emacs-for-python"))
-(setq install-packages '(haml-mode markdown-mode jinja2-mode
-                         coffee-mode clojure-mode pony-mode
-                         multiple-cursors workspaces monokai-theme
-                         writegood-mode dash-at-point dired+
-                         zenburn-theme))
+
+(setq custom-packages '(haml-mode markdown-mode jinja2-mode
+                        coffee-mode clojure-mode pony-mode
+                        multiple-cursors workspaces monokai-theme
+                        writegood-mode dash-at-point dired+
+                        zenburn-theme))
+
+(setq epy-packages '(autopair flymake-cursor smart-operator
+                     python pymacs virtualenv nose
+                     highlight-indentation eproject
+                     auto-complete yasnippet yasnippet-bundle
+                     dropdown-list))
+
+(setq install-packages (append custom-packages
+                               epy-packages))
 
 ;; (package-refresh-contents)
 ;; base
@@ -41,6 +51,9 @@
 
 ;; font
 (set-face-attribute 'default nil :font "Menlo Regular-11")
+
+;; django
+; (epy-django-snippets)
 
 ;; dash
 (global-set-key (kbd "C-c d") 'dash-at-point)
