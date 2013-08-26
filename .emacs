@@ -5,13 +5,15 @@
 (setq install-packages '(haml-mode markdown-mode jinja2-mode
                          coffee-mode clojure-mode pony-mode
                          multiple-cursors workspaces monokai-theme
-                         writegood-mode dash-at-point dired+))
+                         writegood-mode dash-at-point dired+
+                         zenburn-theme))
 
 ;; (package-refresh-contents)
 ;; base
 (require 'common)
 ; theme
-(require 'monokai-theme)
+; (require 'monokai-theme)
+(require 'zenburn-theme)
 ; markup
 (require 'haml-mode)
 (require 'markdown-mode)
@@ -93,7 +95,9 @@
 (custom-set-variables
  '(default-tab-width 4 t)
  '(desktop-save-mode t)
+ '(column-number-mode t)
  '(global-auto-revert-mode t)
- '(global-hl-line-mode nil)
+ '(global-hl-line-mode t)
+ '(global-linum-mode nil)
  '(iswitchb-mode t)
  '(winner-mode t nil (winner)))
