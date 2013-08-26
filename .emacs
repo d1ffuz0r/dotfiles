@@ -7,7 +7,7 @@
                         coffee-mode clojure-mode pony-mode
                         multiple-cursors workspaces monokai-theme
                         writegood-mode dash-at-point dired+
-                        zenburn-theme))
+                        zenburn-theme windresize))
 
 (setq epy-packages '(autopair flymake-cursor smart-operator
                      python pymacs virtualenv nose
@@ -45,7 +45,7 @@
 (require 'writegood-mode)
 (require 'multiple-cursors)
 (require 'dash-at-point)
-(require 'window-resize)
+(require 'windresize)
 ; libraries
 (load-library "workspaces.el")
 
@@ -62,6 +62,12 @@
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+
+;; windresize
+(global-set-key [C-M-down] 'windresize-up-minus)
+(global-set-key [C-M-up] 'windresize-down-minus)
+(global-set-key [C-M-left] 'windresize-right-minus)
+(global-set-key [C-M-right] 'windresize-left-minus)
 
 ;; writegood-mode
 (global-set-key (kbd "C-c C-g") 'writegood-mode)
