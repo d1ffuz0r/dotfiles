@@ -1,21 +1,5 @@
 ;; epy-python.el - setup of python stuff
 
-;; pymacs
-;; (require 'pymacs (concat epy-install-dir "extensions/pymacs.el"))
-
-;; Ipython integration with fgallina/python.el
-(defun epy-setup-ipython ()
-  "Setup ipython integration with python-mode"
-  (interactive)
-  (setq
-   python-shell-interpreter "ipython"
-   python-shell-interpreter-args ""
-   python-shell-prompt-regexp "In \[[0-9]+\]: "
-   python-shell-prompt-output-regexp "Out\[[0-9]+\]: "
-   python-shell-completion-setup-code ""
-   python-shell-completion-string-code "';'.join(get_ipython().complete('''%s''')[1])\n")
-  )
-
 ;;=========================================================
 ;; Flymake additions, I have to put this one somwhere else?
 ;;=========================================================

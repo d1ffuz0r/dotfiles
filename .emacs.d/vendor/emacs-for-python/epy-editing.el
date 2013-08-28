@@ -6,8 +6,6 @@
 (ido-mode t)
 (setq ido-enable-flex-matching t) ;; enable fuzzy matching
 
-(require 'smart-operator)
-
 ;; Open Next Line
 (require 'open-next-line)
 
@@ -28,13 +26,9 @@
   (interactive)
   (yas/load-directory (concat epy-install-dir "snippets/django")))
 
-
 (yas/initialize)
 (setq yas/prompt-functions '(yas/dropdown-prompt yas/ido-prompt yas/x-prompt))
 (setq yas/wrap-around-region 'cua)
-
-;; Eproject project management with emacs
-;; (require 'eproject)
 
 ;; code borrowed from http://emacs-fu.blogspot.com/2010/01/duplicating-lines-and-commenting-them.html
 (defun djcb-duplicate-line (&optional commentfirst)
@@ -54,7 +48,9 @@ original" (interactive)
 (global-set-key (kbd "C-c y") 'djcb-duplicate-line)
 
 ;; duplicate a line and comment the first
-(global-set-key (kbd "C-c c")(lambda()(interactive)(djcb-duplicate-line t)))
+(global-set-key (kbd "C-c c") (lambda ()
+                                (interactive)
+                                (djcb-duplicate-line t)))
 
 ;; Mark whole line
 (defun mark-line (&optional arg)
@@ -148,18 +144,9 @@ original" (interactive)
 (delete-selection-mode 1)
 
 ;; highlight current line
-;;(global-hl-line-mode 1)
-;;(set-face-background 'hl-line "seashell2") ;; Nice color
+(global-hl-line-mode 1)
 
 ; highlight brackets
 (show-paren-mode t)
-
-;; Highlight indentation
-;;(require 'highlight-indentation)
-;;(add-hook 'python-mode-hook 'highlight-indentation)
-
-;; Line numbering
-;; (setq linum-format "%4d")
-;; (global-linum-mode 1)
 
 (provide 'epy-editing)
