@@ -1,59 +1,60 @@
 (add-to-list 'load-path "~/.emacs.d/vendor/")
 
-(setq local-packages '("git-emacs" "mercurial" "unittest-mode"
-                       "emacs-for-python"))
+(setq local-packages '("git-emacs" "mercurial" "unittest-mode" "emacs-for-python"))
 
-(setq custom-packages '(haml-mode markdown-mode jinja2-mode
-                        coffee-mode clojure-mode pony-mode
-                        multiple-cursors workspaces monokai-theme
-                        writegood-mode dash-at-point dired+
-                        zenburn-theme windresize))
+(setq custom-packages '(haml-mode markdown-mode jinja2-mode coffee-mode clojure-mode
+                        pony-mode jedi multiple-cursors workspaces dired+ windresize
+                        writegood-mode dash-at-point monokai-theme zenburn-theme))
 
-(setq epy-packages '(autopair flymake-cursor smart-operator
-                     python pymacs virtualenv nose
-                     highlight-indentation eproject
-                     auto-complete yasnippet yasnippet-bundle
-                     dropdown-list))
+(setq epy-packages '(autopair flymake-cursor python virtualenv
+                     nose auto-complete dropdown-list
+                     yasnippet yasnippet-bundle))
 
 (setq install-packages (append custom-packages
                                epy-packages))
 
 ;; (package-refresh-contents)
-;; base
+;; common
 (require 'common)
-; theme
+;; theme
 ; (require 'monokai-theme)
-(require 'zenburn-theme)
-; markup
+; (require 'zenburn-theme)
+;; markup
 (require 'haml-mode)
-(require 'markdown-mode)
 (require 'jinja2-mode)
-; languages
+(require 'markdown-mode)
+;; languages
 (require 'clojure-mode)
 (require 'coffee-mode)
-; python modes
+;; python modes
 (require 'epy-init)
 (require 'unittest)
 (require 'pony-mode)
-(require 'ac-python)
-; dvcs
+;;(require 'ac-python)
+;; dvcs
 (require 'git-emacs)
 (require 'mercurial)
-; dired
-(require 'dired+)
-; etc
-(require 'writegood-mode)
-(require 'multiple-cursors)
+;; etc
 (require 'dash-at-point)
+(require 'dired+)
+(require 'multiple-cursors)
+(require 'writegood-mode)
 (require 'windresize)
 ; libraries
 (load-library "workspaces.el")
 
 ;; font
-(set-face-attribute 'default nil :font "Menlo Regular-11")
+(set-face-attribute 'default nil :font "Menlo Regular-12")
 
-;; django
+;; python
 ; (epy-django-snippets)
+(epy-setup-checker "~/.emacs.d/pychecker.sh %f")
+
+;; jedi
+(add-hook 'python-mode-hook 'jedi:setup)
+(setq jedi:setup-keys t)
+(setq jedi:complete-on-dot t)
+(setq jedi:key-show-doc (kbd "C-c C-d"))
 
 ;; dash
 (global-set-key (kbd "C-c d") 'dash-at-point)
@@ -64,6 +65,7 @@
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
 ;; windresize
+(setq windresize-increment 1)
 (global-set-key [C-M-down] 'windresize-up-minus)
 (global-set-key [C-M-up] 'windresize-down-minus)
 (global-set-key [C-M-left] 'windresize-right-minus)
@@ -100,9 +102,6 @@
           (lambda()
             (setq sgml-basic-offset 4)))
 
-;; pychecker
-(epy-setup-checker "~/.emacs.d/pychecker.sh %f")
-
 ;; keys
 (global-set-key (kbd "C-w") 'backward-kill-word)
 (global-set-key (kbd "C-x C-k") 'kill-region)
@@ -110,13 +109,12 @@
 (global-set-key (kbd "C-x C-g") 'goto-line)
 (global-set-key (kbd "C-c g") 'rgrep)
 
-
+;; variables
 (custom-set-variables
  '(default-tab-width 4 t)
  '(desktop-save-mode t)
  '(column-number-mode t)
  '(global-auto-revert-mode t)
- '(global-hl-line-mode t)
  '(global-linum-mode nil)
  '(iswitchb-mode t)
  '(winner-mode t nil (winner)))
