@@ -18,7 +18,7 @@
 (require 'common)
 ;; theme
 ; (require 'monokai-theme)
-; (require 'zenburn-theme)
+(require 'zenburn-theme)
 ;; markup
 (require 'haml-mode)
 (require 'jinja2-mode)
@@ -30,7 +30,6 @@
 (require 'epy-init)
 (require 'unittest)
 (require 'pony-mode)
-;;(require 'ac-python)
 ;; dvcs
 (require 'git-emacs)
 (require 'mercurial)
@@ -51,10 +50,10 @@
 (epy-setup-checker "~/.emacs.d/pychecker.sh %f")
 
 ;; jedi
-(add-hook 'python-mode-hook 'jedi:setup)
 (setq jedi:setup-keys t)
 (setq jedi:complete-on-dot t)
 (setq jedi:key-show-doc (kbd "C-c C-d"))
+(add-hook 'python-mode-hook 'jedi:setup)
 
 ;; dash
 (global-set-key (kbd "C-c d") 'dash-at-point)
@@ -101,6 +100,9 @@
 (add-hook 'html-mode-hook
           (lambda()
             (setq sgml-basic-offset 4)))
+
+;; elisp-mode-hook
+(add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
 
 ;; keys
 (global-set-key (kbd "C-w") 'backward-kill-word)
