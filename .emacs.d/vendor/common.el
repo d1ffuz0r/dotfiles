@@ -53,7 +53,7 @@
 
 ;; ---------------------------------
 ;; create the autosave/backup dir if necessary, since emacs won't
-;; and set autosave/backup directoriectories
+;; and set autosave/backup directories
 ;; ---------------------------------
 (make-directory "~/.emacs.d/autosaves" t)
 (make-directory "~/.emacs.d/backups" t)
@@ -73,8 +73,10 @@
 ;; ---------------------------------
 ;; common hooks
 ;; ---------------------------------
+;; delete whitespaces
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
-
+;; emacs-lisp-mode-hook
+(add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
 
 ;; ---------------------------------
 ;; common settings
@@ -83,11 +85,14 @@
 
 (custom-set-variables
  '(auto-window-vscroll nil t)
+ '(desktop-save-mode t)
  '(scroll-bar-mode nil)
  '(tool-bar-mode nil)
  '(inhibit-startup-screen t)
  '(initial-scratch-message nil)
  '(indent-tabs-mode nil)
+ '(iswitchb-mode t)
+ '(icomplete-mode t)
  '(show-trailing-whitespace t)
  '(ring-bell-function nil t)
  '(scroll-step 1)

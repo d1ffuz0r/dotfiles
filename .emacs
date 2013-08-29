@@ -101,9 +101,6 @@
           (lambda()
             (setq sgml-basic-offset 4)))
 
-;; elisp-mode-hook
-(add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
-
 ;; keys
 (global-set-key (kbd "C-w") 'backward-kill-word)
 (global-set-key (kbd "C-x C-k") 'kill-region)
@@ -114,9 +111,8 @@
 ;; variables
 (custom-set-variables
  '(default-tab-width 4 t)
- '(desktop-save-mode t)
  '(column-number-mode t)
  '(global-auto-revert-mode t)
  '(global-linum-mode nil)
- '(iswitchb-mode t)
+ '(indicate-empty-lines t)
  '(winner-mode t nil (winner)))
