@@ -4,14 +4,13 @@
 
 (setq custom-packages '(haml-mode markdown-mode jinja2-mode coffee-mode clojure-mode
                         pony-mode jedi multiple-cursors workspaces dired+ windresize
-                        writegood-mode dash-at-point monokai-theme zenburn-theme))
+                        writegood-mode dash-at-point monokai-theme zenburn-theme
+                        erlang distel))
 
-(setq epy-packages '(autopair flymake-cursor python virtualenv
-                     nose auto-complete dropdown-list
-                     yasnippet yasnippet-bundle))
+(setq epy-packages '(autopair flymake-cursor python virtualenv nose auto-complete
+                     dropdown-list yasnippet yasnippet-bundle))
 
-(setq install-packages (append custom-packages
-                               epy-packages))
+(setq install-packages (append custom-packages epy-packages))
 
 ;; (package-refresh-contents)
 ;; common
@@ -26,6 +25,9 @@
 ;; languages
 (require 'clojure-mode)
 (require 'coffee-mode)
+;; erlang modes
+(require 'erlang-start)
+(require 'distel)
 ;; python modes
 (require 'epy-init)
 (require 'unittest)
@@ -39,7 +41,7 @@
 (require 'multiple-cursors)
 (require 'writegood-mode)
 (require 'windresize)
-; libraries
+;; libraries
 (load-library "workspaces.el")
 
 ;; font
@@ -93,8 +95,29 @@
             (define-key coffee-mode-map [(meta r)] 'coffee-compile-buffer)
             ;; Compile '.coffee' files on every save
             (and (file-exists-p (buffer-file-name))
-                       (file-exists-p (coffee-compiled-file-name))
-                       (coffee-cos-mode t))))
+                 (file-exists-p (coffee-compiled-file-name))
+                 (coffee-cos-mode t))))
+
+;; erlang-mode
+(distel-setup)
+
+(defconst distel-shell-keys
+  '(([tab] erl-complete)
+    ("\M-." erl-find-source-under-point)
+    ("\M-," erl-find-source-unwind)
+    ("\M-*" erl-find-source-unwind))
+  "Additional keys to bind when in Erlang shell.")
+
+(add-hook 'erlang-mode-hook
+          (lambda ()
+            (setq inferior-erlang-machine-options '("-sname" "emacs"))
+            (imenu-add-to-menubar "imenu")))
+
+(add-hook 'erlang-shell-mode-hook
+          (lambda ()
+            (eldoc-mode t)
+            (dolist (spec distel-shell-keys)
+              (define-key erlang-shell-mode-map (car spec) (cadr spec)))))
 
 ;; html-mode-hook
 (add-hook 'html-mode-hook
@@ -108,7 +131,7 @@
 (global-set-key (kbd "C-x C-g") 'goto-line)
 (global-set-key (kbd "C-c g") 'rgrep)
 
-;; variables
+;; settings
 (custom-set-variables
  '(default-tab-width 4 t)
  '(column-number-mode t)

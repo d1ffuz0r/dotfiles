@@ -6,7 +6,9 @@
 
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ("marmalade" . "http://marmalade-repo.org/packages/")
-                         ("melpa" . "http://melpa.milkbox.net/packages/")))
+                         ("melpa" . "http://melpa.milkbox.net/packages/")
+                         ("erlang-emacs" . "http://xn--5dbqm8ad.xn--9dbdkw.se/erlang-emacs/")))
+
 
 (defun install-if-needed (package)
   (unless (package-installed-p package)
@@ -16,8 +18,8 @@
   (add-to-list 'load-path (concat "~/.emacs.d/vendor/" path)))
 
 (mapc 'install-if-needed install-packages)
-
 (mapc 'add-to-load local-packages)
+
 
 ;; ---------------------------------
 ;; full path to opened file
