@@ -24,6 +24,7 @@ export PIP_RESPECT_VIRTUALENV=true
 export PATH=$PATH:~/Library/Python/2.7/bin:~/Library/Python/2.7/lib
 export PATH=$PATH:~/Library/Python/3.3/bin:~/Library/Python/3.3/lib
 export PATH=$PATH:~/.local/bin
+export PYTHONSTARTUP=$HOME/.python-startup.py
 
 # Aliases
 alias zshconfig="vim ~/.zshrc"
