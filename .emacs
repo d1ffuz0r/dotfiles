@@ -17,7 +17,8 @@
 (require 'common)
 ;; theme
 ; (require 'monokai-theme)
-(require 'zenburn-theme)
+; (require 'zenburn-theme)
+; (require 'twilight-theme)
 ;; markup
 (require 'haml-mode)
 (require 'jinja2-mode)
@@ -79,16 +80,13 @@
 (global-set-key (kbd "C-x g") 'workspace-goto)
 
 ;; markdown-mode
-(add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.mkd$" . markdown-mode))
-
-;; coffeescript-mode
-(add-to-list 'auto-mode-alist '("\\.coffee$" . coffee-mode))
-(add-to-list 'auto-mode-alist '("Cakefile" . coffee-mode))
+;; (add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
+;; (add-to-list 'auto-mode-alist '("\\.mkd$" . markdown-mode))
 
 ;; coffee-mode-hook
 (add-hook 'coffee-mode-hook
           (lambda ()
+            (auto-complete-mode t)
             (make-local-variable 'tab-width)
             (set 'tab-width 2)
             (setq coffee-args-compile '("-c" "--bare"))
@@ -110,6 +108,7 @@
 
 (add-hook 'erlang-mode-hook
           (lambda ()
+            (auto-complete-mode t)
             (setq inferior-erlang-machine-options '("-sname" "emacs"))
             (imenu-add-to-menubar "imenu")))
 
@@ -120,6 +119,7 @@
               (define-key erlang-shell-mode-map (car spec) (cadr spec)))))
 
 ;; html-mode-hook
+(add-to-list 'auto-mode-alist '("\\.hbs$" . html-mode))
 (add-hook 'html-mode-hook
           (lambda()
             (setq sgml-basic-offset 4)))
@@ -137,5 +137,6 @@
  '(column-number-mode t)
  '(global-auto-revert-mode t)
  '(global-linum-mode nil)
+ '(global-hl-line-mode nil)
  '(indicate-empty-lines t)
  '(winner-mode t nil (winner)))
