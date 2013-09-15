@@ -1,4 +1,14 @@
 ;; ---------------------------------
+;; functions
+;; ---------------------------------
+(defun install-if-needed (package)
+  (unless (package-installed-p package)
+    (package-install package)))
+
+(defun add-to-load (path)
+  (add-to-list 'load-path (concat "~/.emacs.d/vendor/" path)))
+
+;; ---------------------------------
 ;; packages
 ;; ---------------------------------
 (require 'package)
@@ -11,24 +21,13 @@
 
 (setq base-packages '(dired+ multiple-cursors workspaces writegood-mode windresize))
 
-
-(defun install-if-needed (package)
-  (unless (package-installed-p package)
-    (package-install package)))
-
-(defun add-to-load (path)
-  (add-to-list 'load-path (concat "~/.emacs.d/vendor/" path)))
-
-(setq all-packages (append base-packages install-packages))
-
-(mapc 'install-if-needed all-packages)
+(mapc 'install-if-needed (append base-packages install-packages))
 (mapc 'add-to-load local-packages)
 
 
 ;; ---------------------------------
 ;; base packages. most useful and deletion is not allowed
 ;; ---------------------------------
-
 (defun workspaces ()
   (load-library "workspaces.el")
   (global-set-key (kbd "C-x g") 'workspace-goto))
