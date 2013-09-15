@@ -11,8 +11,8 @@
 
 ;; Just python
 (add-hook 'python-mode-hook
-	  (lambda ()
-	    (define-key python-mode-map "'" 'skeleton-pair-insert-maybe)))
+          (lambda ()
+            (define-key python-mode-map "'" 'skeleton-pair-insert-maybe)))
 
 ;; Live completion with auto-complete
 ;; (see http://cx4a.org/software/auto-complete/)
@@ -38,16 +38,14 @@
       (maphash (lambda (key value)
                  (push key candidates))
                hashtab)
-      (identity candidates)
-      )))
+      (identity candidates))))
 
 (defun epy-get-all-snips ()
   (require 'yasnippet) ;; FIXME: find a way to conditionally load it
   (let (candidates)
     (maphash
      (lambda (kk vv) (push (epy-snips-from-table vv) candidates)) yas/tables)
-    (apply 'append candidates))
-  )
+    (apply 'append candidates)))
 
 ;;(setq ac-ignores (concatenate 'list ac-ignores (epy-get-all-snips)))
 

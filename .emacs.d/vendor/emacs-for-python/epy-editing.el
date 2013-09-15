@@ -12,7 +12,7 @@
 ;; Auto Completion
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories
-	     (concat epy-install-dir "auto-complete/ac-dict"))
+             (concat epy-install-dir "auto-complete/ac-dict"))
 (ac-config-default)
 
 ;; Yasnippet - force the loading of the custom version of yasnippet
@@ -34,15 +34,15 @@
 (defun djcb-duplicate-line (&optional commentfirst)
   "comment line at point; if COMMENTFIRST is non-nil, comment the
 original" (interactive)
-  (beginning-of-line)
-  (push-mark)
-  (end-of-line)
-  (let ((str (buffer-substring (region-beginning) (region-end))))
-    (when commentfirst
+(beginning-of-line)
+(push-mark)
+(end-of-line)
+(let ((str (buffer-substring (region-beginning) (region-end))))
+  (when commentfirst
     (comment-region (region-beginning) (region-end)))
-    (insert-string
-      (concat (if (= 0 (forward-line 1)) "" "\n") str "\n"))
-    (forward-line -1)))
+  (insert-string
+   (concat (if (= 0 (forward-line 1)) "" "\n") str "\n"))
+  (forward-line -1)))
 
 ;; duplicate a line
 (global-set-key (kbd "C-c y") 'djcb-duplicate-line)
@@ -99,52 +99,49 @@ original" (interactive)
   (interactive "*p")
   (move-text-internal (- arg)))
 
-; patches by balle
-; http://www.datenterrorist.de
+                                        ; patches by balle
+                                        ; http://www.datenterrorist.de
 (defun balle-python-shift-left ()
   (interactive)
   (let (start end bds)
     (if (and transient-mark-mode
-	   mark-active)
-	(setq start (region-beginning) end (region-end))
+             mark-active)
+        (setq start (region-beginning) end (region-end))
       (progn
-	(setq bds (bounds-of-thing-at-point 'line))
-	(setq start (car bds) end (cdr bds))))
-  (python-indent-shift-left start end))
+        (setq bds (bounds-of-thing-at-point 'line))
+        (setq start (car bds) end (cdr bds))))
+    (python-indent-shift-left start end))
   (setq deactivate-mark nil)
-)
+  )
 
 (defun balle-python-shift-right ()
   (interactive)
   (let (start end bds)
     (if (and transient-mark-mode
-	   mark-active)
-	(setq start (region-beginning) end (region-end))
+             mark-active)
+        (setq start (region-beginning) end (region-end))
       (progn
-	(setq bds (bounds-of-thing-at-point 'line))
-	(setq start (car bds) end (cdr bds))))
-  (python-indent-shift-right start end))
+        (setq bds (bounds-of-thing-at-point 'line))
+        (setq start (car bds) end (cdr bds))))
+    (python-indent-shift-right start end))
   (setq deactivate-mark nil)
-)
+  )
 
 (global-set-key (kbd "M-<up>") 'move-text-up)
 (global-set-key (kbd "M-<down>") 'move-text-down)
 
 (add-hook 'python-mode-hook
-	  (lambda ()
-	    (define-key python-mode-map (kbd "M-<right>")
-	      'balle-python-shift-right)
-	    (define-key python-mode-map (kbd "M-<left>")
-	      'balle-python-shift-left))
-	  )
+          (lambda ()
+            (define-key python-mode-map (kbd "M-<right>")
+              'balle-python-shift-right)
+            (define-key python-mode-map (kbd "M-<left>")
+              'balle-python-shift-left))
+          )
 
 ;; Other useful stuff
 
 ; delete seleted text when typing
 (delete-selection-mode 1)
-
-;; highlight current line
-(global-hl-line-mode 1)
 
 ; highlight brackets
 (show-paren-mode t)
