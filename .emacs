@@ -16,7 +16,7 @@
 
 (setq custom-packages '(haml-mode markdown-mode jinja2-mode coffee-mode clojure-mode
                         pony-mode jedi dash-at-point monokai-theme zenburn-theme
-                        erlang distel rust-mode))
+                        erlang distel rust-mode projectile))
 
 (setq epy-packages '(autopair flymake-cursor python virtualenv nose auto-complete
                      dropdown-list yasnippet yasnippet-bundle))
@@ -27,10 +27,10 @@
 ;; common
 (require 'common)
 ;; theme
-; (require 'monokai-theme)
+(require 'monokai-theme)
 ; (require 'twilight-theme)
 ; (require 'obsidian-theme)
-(require 'zenburn-theme)
+; (require 'zenburn-theme)
 ;; markup
 (require 'haml-mode)
 (require 'jinja2-mode)
@@ -51,9 +51,10 @@
 (require 'mercurial)
 ;; etc
 (require 'dash-at-point)
+(require 'projectile)
 
 ;; font
-(set-face-attribute 'default nil :font "Menlo Regular-12")
+(set-face-attribute 'default nil :font "Menlo Regular-11")
 
 ;; jedi
 (setq jedi:setup-keys t)
@@ -67,6 +68,10 @@
 
 ;; dash
 (global-set-key (kbd "C-c d") 'dash-at-point)
+
+;; projectile
+(projectile-global-mode)
+(setq projectile-enable-caching t)
 
 ;; markdown-mode
 (add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
