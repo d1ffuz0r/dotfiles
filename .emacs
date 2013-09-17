@@ -27,10 +27,10 @@
 ;; common
 (require 'common)
 ;; theme
-(require 'monokai-theme)
+; (require 'monokai-theme)
 ; (require 'twilight-theme)
 ; (require 'obsidian-theme)
-; (require 'zenburn-theme)
+(require 'zenburn-theme)
 ;; markup
 (require 'haml-mode)
 (require 'jinja2-mode)
@@ -53,8 +53,13 @@
 (require 'dash-at-point)
 (require 'projectile)
 
+;;
+(add-to-list 'ac-modes 'coffee-mode)
+(add-to-list 'ac-modes 'sql-mode)
+(add-to-list 'ac-modes 'erlang-mode)
+
 ;; font
-(set-face-attribute 'default nil :font "Menlo Regular-11")
+(set-face-attribute 'default nil :font "Menlo Regular-12")
 
 ;; jedi
 (setq jedi:setup-keys t)
@@ -84,7 +89,6 @@
   (setq coffee-args-compile '("-c" "--bare"))
   (define-key coffee-mode-map [(meta r)] 'coffee-compile-buffer))
 
-(add-to-list 'ac-modes 'coffee-mode)
 (add-hook 'coffee-mode-hook 'coffee-hook)
 
 ;; erlang-mode
@@ -106,7 +110,6 @@
   (dolist (spec distel-shell-keys)
     (define-key erlang-shell-mode-map (car spec) (cadr spec))))
 
-(add-to-list 'ac-modes 'erlang-mode)
 (add-hook 'erlang-mode-hook 'erlang-hook)
 (add-hook 'erlang-shell-mode-hook 'erlang-shell-hook)
 
