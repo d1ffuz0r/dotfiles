@@ -8,6 +8,9 @@
 (defun add-to-load (path)
   (add-to-list 'load-path (concat "~/.emacs.d/vendor/" path)))
 
+(defun add-to-ac (mode)
+  (add-to-list 'ac-modes mode))
+
 ;; ---------------------------------
 ;; packages
 ;; ---------------------------------
@@ -24,6 +27,10 @@
 (mapc 'install-if-needed (append base-packages install-packages))
 (mapc 'add-to-load local-packages)
 
+;; ---------------------------------
+;; auto-complete modes
+;; ---------------------------------
+(mapc 'add-to-ac ac-modes)
 
 ;; ---------------------------------
 ;; base packages. most useful and deletion is not allowed

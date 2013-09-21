@@ -21,6 +21,8 @@
 (setq epy-packages '(autopair flymake-cursor python virtualenv nose auto-complete
                      dropdown-list yasnippet yasnippet-bundle))
 
+(setq ac-modes '(coffee-mode sql-mode erlang-mode clojure-mode rust-mode html-mode))
+
 (setq install-packages (append custom-packages epy-packages))
 
 ;; (package-refresh-contents)
@@ -29,8 +31,8 @@
 ;; theme
 ; (require 'monokai-theme)
 ; (require 'twilight-theme)
-; (require 'obsidian-theme)
-(require 'zenburn-theme)
+(require 'obsidian-theme)
+; (require 'zenburn-theme)
 ;; markup
 (require 'haml-mode)
 (require 'jinja2-mode)
@@ -52,11 +54,6 @@
 ;; etc
 (require 'dash-at-point)
 (require 'projectile)
-
-;;
-(add-to-list 'ac-modes 'coffee-mode)
-(add-to-list 'ac-modes 'sql-mode)
-(add-to-list 'ac-modes 'erlang-mode)
 
 ;; font
 (set-face-attribute 'default nil :font "Menlo Regular-12")
@@ -114,7 +111,8 @@
 (add-hook 'erlang-shell-mode-hook 'erlang-shell-hook)
 
 ;; html-mode
-(defun html-hook () (setq sgml-basic-offset 4))
+(defun html-hook ()
+  (setq sgml-basic-offset 4))
 
 (add-to-list 'auto-mode-alist '("\\.hbs$" . html-mode))
 (add-hook 'html-mode-hook 'html-hook)
