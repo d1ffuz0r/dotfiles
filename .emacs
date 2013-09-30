@@ -15,11 +15,11 @@
 (setq local-packages '("git-emacs" "mercurial" "unittest-mode" "emacs-for-python"))
 
 (setq custom-packages '(haml-mode markdown-mode jinja2-mode coffee-mode clojure-mode
-                        pony-mode jedi dash-at-point monokai-theme zenburn-theme
-                        erlang distel rust-mode projectile))
+                        pony-mode jedi erlang distel rust-mode twilight-theme
+                        dash-at-point projectile))
 
 (setq epy-packages '(autopair flymake-cursor python virtualenv nose auto-complete
-                     dropdown-list yasnippet yasnippet-bundle))
+                     dropdown-list yasnippet yasnippet-bundle yas-jit))
 
 (setq ac-modes '(coffee-mode sql-mode erlang-mode clojure-mode rust-mode html-mode))
 
@@ -30,8 +30,8 @@
 (require 'common)
 ;; theme
 ; (require 'monokai-theme)
-; (require 'twilight-theme)
-(require 'obsidian-theme)
+(require 'twilight-theme)
+; (require 'obsidian-theme)
 ; (require 'zenburn-theme)
 ;; markup
 (require 'haml-mode)
@@ -54,9 +54,13 @@
 ;; etc
 (require 'dash-at-point)
 (require 'projectile)
+(require 'yas-jit)
+
+;; yasnippets
+(yas/jit-load)
 
 ;; font
-(set-face-attribute 'default nil :font "Menlo Regular-12")
+(set-face-attribute 'default nil :font "Menlo Regular-11")
 
 ;; jedi
 (setq jedi:setup-keys t)
@@ -107,7 +111,12 @@
   (dolist (spec distel-shell-keys)
     (define-key erlang-shell-mode-map (car spec) (cadr spec))))
 
+(add-to-list 'flymake-allowed-file-name-masks
+             (list "\\.erl\\'" (apply-partially 'flymake-command-parse
+                                                "~/.emacs.d/erlcheker.sh %f")))
+
 (add-hook 'erlang-mode-hook 'erlang-hook)
+(add-hook 'erlang-mode-hook 'flymake-find-file-hook)
 (add-hook 'erlang-shell-mode-hook 'erlang-shell-hook)
 
 ;; html-mode
