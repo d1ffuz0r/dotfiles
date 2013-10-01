@@ -14,8 +14,8 @@
 
 (setq local-packages '("git-emacs" "mercurial" "unittest-mode" "emacs-for-python"))
 
-(setq custom-packages '(haml-mode markdown-mode jinja2-mode coffee-mode clojure-mode
-                        pony-mode jedi erlang distel rust-mode twilight-theme
+(setq custom-packages '(haml-mode markdown-mode jinja2-mode stylus-mode coffee-mode
+                        clojure-mode pony-mode jedi erlang distel rust-mode twilight-theme
                         dash-at-point projectile))
 
 (setq epy-packages '(autopair flymake-cursor python virtualenv nose auto-complete
@@ -37,6 +37,7 @@
 (require 'haml-mode)
 (require 'jinja2-mode)
 (require 'markdown-mode)
+(require 'stylus-mode)
 ;; languages
 (require 'clojure-mode)
 (require 'coffee-mode)
