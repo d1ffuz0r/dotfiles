@@ -21,7 +21,7 @@
 (setq epy-packages '(autopair flymake-cursor python virtualenv nose auto-complete
                      dropdown-list yasnippet yasnippet-bundle yas-jit))
 
-(setq ac-modes '(coffee-mode sql-mode erlang-mode clojure-mode rust-mode html-mode))
+(setq ac-modes '(coffee-mode sql-mode erlang-mode clojure-mode rust-mode html-mode stylus-mode))
 
 (setq install-packages (append custom-packages epy-packages))
 
