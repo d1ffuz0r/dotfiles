@@ -3,11 +3,13 @@
 ;;=========================================================
 ;; Flymake additions, I have to put this one somwhere else?
 ;;=========================================================
+(require 'flymake)
+(setq flymake-run-in-place nil)
 
 (defun flymake-create-copy-file ()
   "Create a copy local file"
   (let* ((temp-file (flymake-init-create-temp-buffer-copy
-                     'flymake-create-temp-inplace)))
+                     'flymake-create-temp-with-folder-structure)))
     (file-relative-name
      temp-file
      (file-name-directory buffer-file-name))))
@@ -25,9 +27,8 @@ The CMDLINE should be something like:
 "
   (let ((cmdline-subst (replace-regexp-in-string "%f" (flymake-create-copy-file) cmdline)))
     (setq cmdline-subst (split-string-and-unquote cmdline-subst))
-    (list (first cmdline-subst) (rest cmdline-subst))
-    ))
-
+    (list (first cmdline-subst)
+          (rest cmdline-subst))))
 
 (when (load-file (concat epy-install-dir "extensions/flymake-patch.el"))
   (setq flymake-info-line-regex
@@ -36,8 +37,7 @@ The CMDLINE should be something like:
 
 (defun epy-setup-checker (cmdline)
   (add-to-list 'flymake-allowed-file-name-masks
-               (list "\\.py\\'" (apply-partially 'flymake-command-parse cmdline)))
-  )
+               (list "\\.py\\'" (apply-partially 'flymake-command-parse cmdline))))
 
 
 ;; Python or python mode?
@@ -51,24 +51,20 @@ The CMDLINE should be something like:
      (autoload 'virtualenv-workon "virtualenv"
        "Activate a Virtual Environment present using virtualenvwrapper" t)
 
-
      ;; Not on all modes, please
      (add-hook 'python-mode-hook 'flymake-find-file-hook)
-
 
      ;; when we swich on the command line, switch in Emacs
      (desktop-save-mode 1)
      (defun workon-postactivate (virtualenv)
        (require 'virtualenv)
        (virtualenv-activate virtualenv)
-       (desktop-change-dir virtualenv))
-     )
-  )
+       (desktop-change-dir virtualenv))))
 
 ;; Py3 files
 (add-to-list 'auto-mode-alist '("\\.py3\\'" . python-mode))
 
 (add-hook 'python-mode-hook '(lambda ()
-     (define-key python-mode-map "\C-m" 'newline-and-indent)))
+                               (define-key python-mode-map "\C-m" 'newline-and-indent)))
 
 (provide 'epy-python)
