@@ -88,9 +88,7 @@
 ;; coffee-mode
 (defun coffee-hook ()
   (make-local-variable 'tab-width)
-  (set 'tab-width 2)
-  (setq coffee-args-compile '("-c" "--bare"))
-  (define-key coffee-mode-map [(meta r)] 'coffee-compile-buffer))
+  (set 'tab-width 2))
 
 (add-hook 'coffee-mode-hook 'coffee-hook)
 
