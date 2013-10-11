@@ -16,7 +16,7 @@
 
 (setq custom-packages '(haml-mode markdown-mode jinja2-mode stylus-mode coffee-mode
                         clojure-mode pony-mode jedi erlang distel rust-mode twilight-theme
-                        dash-at-point projectile))
+                        dash-at-point projectile flymake-coffee))
 
 (setq epy-packages '(autopair flymake-cursor python virtualenv nose auto-complete
                      dropdown-list yasnippet yasnippet-bundle yas-jit))
@@ -53,6 +53,7 @@
 (require 'git-emacs)
 (require 'mercurial)
 ;; etc
+(require 'flymake-coffee)
 (require 'dash-at-point)
 (require 'projectile)
 (require 'yas-jit)
@@ -90,6 +91,7 @@
   (make-local-variable 'tab-width)
   (set 'tab-width 2))
 
+(add-hook 'coffee-mode-hook 'flymake-coffee-load)
 (add-hook 'coffee-mode-hook 'coffee-hook)
 
 ;; erlang-mode
@@ -118,6 +120,7 @@
 (add-hook 'erlang-mode-hook 'erlang-hook)
 (add-hook 'erlang-mode-hook 'flymake-find-file-hook)
 (add-hook 'erlang-shell-mode-hook 'erlang-shell-hook)
+(add-to-list 'auto-mode-alist '("\\.src$" . erlang-mode))
 
 ;; html-mode
 (defun html-hook ()
