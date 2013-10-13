@@ -44,8 +44,8 @@
 
 (defun multiple-cursors ()
   (require 'multiple-cursors)
-  (global-set-key (kbd "C->") 'mc/mark-next-like-this)
-  (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+  (global-set-key (kbd "C->")     'mc/mark-next-like-this)
+  (global-set-key (kbd "C-<")     'mc/mark-previous-like-this)
   (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this))
 
 (defun writegood-mode ()
@@ -55,9 +55,9 @@
 (defun windresize ()
   (require 'windresize)
   (setq windresize-increment 1)
-  (global-set-key [C-M-down] 'windresize-up-minus)
-  (global-set-key [C-M-up] 'windresize-down-minus)
-  (global-set-key [C-M-left] 'windresize-right-minus)
+  (global-set-key [C-M-down]  'windresize-up-minus)
+  (global-set-key [C-M-up]    'windresize-down-minus)
+  (global-set-key [C-M-left]  'windresize-right-minus)
   (global-set-key [C-M-right] 'windresize-left-minus))
 
 (mapcar 'funcall base-packages)
@@ -65,11 +65,11 @@
 ;; ---------------------------------
 ;; keybindings
 ;; ---------------------------------
-(global-set-key (kbd "C-w") 'backward-kill-word)
+(global-set-key (kbd "C-w")     'backward-kill-word)
 (global-set-key (kbd "C-x C-k") 'kill-region)
 (global-set-key (kbd "C-c C-k") 'kill-buffer-and-window)
 (global-set-key (kbd "C-x C-g") 'goto-line)
-(global-set-key (kbd "C-c g") 'rgrep)
+(global-set-key (kbd "C-c g")   'rgrep)
 
 ;; ---------------------------------
 ;; full path to opened file
@@ -113,7 +113,6 @@
 (custom-set-variables
  '(auto-save-file-name-transforms (quote ((".*" "~/.emacs.d/autosaves/\\1" t))))
  '(backup-directory-alist (quote ((".*" . "~/.emacs.d/backups/")))))
-
 
 ;; ---------------------------------
 ;; enable lower/upper-region
