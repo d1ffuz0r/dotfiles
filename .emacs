@@ -16,7 +16,7 @@
 
 (setq custom-packages '(haml-mode markdown-mode jinja2-mode stylus-mode coffee-mode
                         clojure-mode pony-mode jedi erlang distel rust-mode twilight-theme
-                        dash-at-point projectile flymake-coffee))
+                        dash-at-point projectile flymake-coffee json-mode))
 
 (setq epy-packages '(autopair flymake-cursor python virtualenv nose auto-complete
                      dropdown-list yasnippet yasnippet-bundle yas-jit))
@@ -36,8 +36,9 @@
 ;; markup
 (require 'haml-mode)
 (require 'jinja2-mode)
-(require 'markdown-mode)
+;(require 'markdown-mode)
 (require 'stylus-mode)
+(require 'json-mode)
 ;; languages
 (require 'clojure-mode)
 (require 'coffee-mode)
