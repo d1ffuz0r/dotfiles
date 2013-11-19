@@ -29,7 +29,7 @@ export PYTHONSTARTUP=$HOME/.python-startup.py
 # Aliases
 alias zshconfig="vim ~/.zshrc"
 alias hosts="sudo vim /etc/hosts"
-alias pgrep="pgrep -L"
+alias pgrep="pgrep -fil"
 
 alias erl="erl -sname localhost"
 alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
