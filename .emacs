@@ -29,14 +29,11 @@
 ;; common
 (require 'common)
 ;; theme
-; (require 'monokai-theme)
-(require 'twilight-theme)
-; (require 'obsidian-theme)
-; (require 'zenburn-theme)
+(load-theme 'wombat)
 ;; markup
 (require 'haml-mode)
 (require 'jinja2-mode)
-;(require 'markdown-mode)
+(require 'markdown-mode)
 (require 'stylus-mode)
 (require 'json-mode)
 ;; languages
@@ -64,7 +61,7 @@
 (yas/jit-load)
 
 ;; font
-(set-face-attribute 'default nil :font "Menlo Regular-11")
+(set-face-attribute 'default nil :font "Menlo Regular-12")
 
 ;; jedi
 (setq jedi:setup-keys t)
@@ -84,8 +81,8 @@
 (setq projectile-enable-caching t)
 
 ;; markdown-mode
-(add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.mkd$" . markdown-mode))
+;; (add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
+;; (add-to-list 'auto-mode-alist '("\\.mkd$" . markdown-mode))
 
 ;; coffee-mode
 (defun coffee-hook ()
@@ -125,7 +122,7 @@
 
 ;; html-mode
 (defun html-hook ()
-  (setq sgml-basic-offset 4))
+  (setq sgml-basic-offset 2))
 
 (add-to-list 'auto-mode-alist '("\\.hbs$" . html-mode))
 (add-hook 'html-mode-hook 'html-hook)

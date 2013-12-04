@@ -79,7 +79,6 @@
                    (abbreviate-file-name (buffer-file-name))
                  "%b"))))
 
-
 ;; ---------------------------------
 ;; http://emacsredux.com/blog/2013/05/22/smarter-navigation-to-the-beginning-of-a-line/
 ;; right C-a button
@@ -102,7 +101,6 @@
 (global-set-key [remap move-beginning-of-line]
                 'smarter-move-beginning-of-line)
 
-
 ;; ---------------------------------
 ;; create the autosave/backup dir if necessary, since emacs won't
 ;; and set autosave/backup directories
@@ -120,6 +118,17 @@
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 
+;; ---------------------------------
+;; uniq buffer names
+;; ---------------------------------
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'forward)
+
+;; ---------------------------------
+;; move between windows using arrows
+;; ---------------------------------
+(require 'windmove)
+(windmove-default-keybindings 'meta)
 
 ;; ---------------------------------
 ;; common hooks
@@ -128,7 +137,6 @@
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 ;; emacs-lisp-mode-hook
 (add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
-
 
 ;; ---------------------------------
 ;; ibuffer
@@ -153,7 +161,6 @@
               (mode 16 16 :left :elide)
               " "
               filename-and-process)))
-
 
 ;; ---------------------------------
 ;; common settings
