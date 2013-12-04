@@ -166,6 +166,7 @@
 ;; common settings
 ;; ---------------------------------
 (fset 'yes-or-no-p 'y-or-n-p)
+(windmove-default-keybindings 'meta)
 
 (custom-set-variables
  '(auto-window-vscroll nil t)
