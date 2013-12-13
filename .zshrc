@@ -30,6 +30,7 @@ export PYTHONSTARTUP=$HOME/.python-startup.py
 alias zshconfig="vim ~/.zshrc"
 alias hosts="sudo vim /etc/hosts"
 alias pgrep="pgrep -fil"
+alias pkill="pkill -f"
 
 alias bb="brunch b"
 alias bw="brunch w"
