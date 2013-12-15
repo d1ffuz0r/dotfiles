@@ -5,7 +5,7 @@ ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="robbyrussell"
 
 # Plugins
-plugins=(virtualenvwrapper git osx macports python github pip django mercurial fabric colored-man)
+plugins=(virtualenvwrapper git osx macports python github pip django mercurial fabric colored-man vagrant)
 
 source $ZSH/oh-my-zsh.sh
 
