@@ -15,13 +15,14 @@
 (setq local-packages '("git-emacs" "mercurial" "unittest-mode" "emacs-for-python"))
 
 (setq custom-packages '(haml-mode markdown-mode jinja2-mode stylus-mode coffee-mode
-                        clojure-mode pony-mode jedi erlang distel rust-mode twilight-theme
-                        dash-at-point projectile flymake-coffee json-mode))
+                        clojure-mode pony-mode jedi erlang distel rust-mode theme-theme
+                        dash-at-point projectile flymake-coffee json-mode puppet-mode))
 
 (setq epy-packages '(autopair flymake-cursor python virtualenv nose auto-complete
                      dropdown-list yasnippet yasnippet-bundle yas-jit))
 
-(setq ac-modes '(coffee-mode sql-mode erlang-mode clojure-mode rust-mode html-mode stylus-mode emacs-lisp-mode))
+(setq ac-modes '(coffee-mode sql-mode erlang-mode clojure-mode rust-mode html-mode stylus-mode
+                 emacs-lisp-mode))
 
 (setq install-packages (append custom-packages epy-packages))
 
@@ -29,7 +30,7 @@
 ;; common
 (require 'common)
 ;; theme
-(load-theme 'wombat)
+(require 'monokai-theme)
 ;; markup
 (require 'haml-mode)
 (require 'jinja2-mode)
@@ -40,6 +41,7 @@
 (require 'clojure-mode)
 (require 'coffee-mode)
 (require 'rust-mode)
+(require 'puppet-mode)
 ;; erlang modes
 (require 'erlang-start)
 (require 'distel)
@@ -61,7 +63,7 @@
 (yas/jit-load)
 
 ;; font
-(set-face-attribute 'default nil :font "Menlo Regular-12")
+(set-face-attribute 'default nil :font "Menlo-12")
 
 ;; jedi
 (setq jedi:setup-keys t)
@@ -81,8 +83,8 @@
 (setq projectile-enable-caching t)
 
 ;; markdown-mode
-;; (add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
-;; (add-to-list 'auto-mode-alist '("\\.mkd$" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.mkd$" . markdown-mode))
 
 ;; coffee-mode
 (defun coffee-hook ()
@@ -131,4 +133,5 @@
 (custom-set-variables
  '(global-auto-revert-mode t)
  '(global-linum-mode nil)
- '(winner-mode t nil (winner)))
+ '(winner-mode t nil (winner))
+ '(cursor-type '(bar . 3)))
