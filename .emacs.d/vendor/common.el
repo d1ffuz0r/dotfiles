@@ -63,6 +63,14 @@
 (mapcar 'funcall base-packages)
 
 ;; ---------------------------------
+;; folding
+;; ---------------------------------
+(hs-minor-mode 1)
+(global-set-key (kbd "M-s") 'hs-toggle-hiding)
+(global-set-key (kbd "M-h") 'hs-hide-all)
+(global-set-key (kbd "M-u") 'hs-show-all)
+
+;; ---------------------------------
 ;; keybindings
 ;; ---------------------------------
 (global-set-key (kbd "C-w")     'backward-kill-word)
@@ -127,8 +135,8 @@
 ;; ---------------------------------
 ;; move between windows using arrows
 ;; ---------------------------------
-(require 'windmove)
 (windmove-default-keybindings 'meta)
+(require 'windmove)
 
 ;; ---------------------------------
 ;; common hooks
@@ -166,7 +174,6 @@
 ;; common settings
 ;; ---------------------------------
 (fset 'yes-or-no-p 'y-or-n-p)
-(windmove-default-keybindings 'meta)
 
 (custom-set-variables
  '(auto-window-vscroll nil t)

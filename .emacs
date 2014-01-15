@@ -15,7 +15,7 @@
 (setq local-packages '("git-emacs" "mercurial" "unittest-mode" "emacs-for-python"))
 
 (setq custom-packages '(haml-mode markdown-mode jinja2-mode stylus-mode coffee-mode
-                        clojure-mode pony-mode jedi erlang distel rust-mode theme-theme
+                        clojure-mode pony-mode jedi erlang distel rust-mode monokai-theme
                         dash-at-point projectile flymake-coffee json-mode puppet-mode))
 
 (setq epy-packages '(autopair flymake-cursor python virtualenv nose auto-complete
@@ -64,7 +64,7 @@
 
 ;; font
 (set-face-attribute 'default nil :font "Menlo-12")
-
+(setq-default line-spacing 0.05)
 ;; jedi
 (setq jedi:setup-keys t)
 (setq jedi:complete-on-dot t)
@@ -106,7 +106,11 @@
 
 (defun erlang-hook ()
   (setq inferior-erlang-machine-options '("-sname" "emacs"))
-  (imenu-add-to-menubar "imenu"))
+  (imenu-add-to-menubar "imenu")
+  (setq hs-special-modes-alist
+        (cons '(erlang-mode
+                "^\\([a-z][a-zA-Z0-9_]*\\|'[^\n']*[^\\]'\\)\\s *(" nil "%"
+                erlang-end-of-clause) hs-special-modes-alist)))
 
 (defun erlang-shell-hook ()
   (eldoc-mode t)
@@ -135,3 +139,7 @@
  '(global-linum-mode nil)
  '(winner-mode t nil (winner))
  '(cursor-type '(bar . 3)))
+
+;; transparensy
+(set-frame-parameter (selected-frame) 'alpha '(99 50))
+(put 'scroll-left 'disabled nil)
