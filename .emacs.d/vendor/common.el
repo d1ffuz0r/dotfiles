@@ -65,7 +65,7 @@
 ;; ---------------------------------
 ;; folding
 ;; ---------------------------------
-(hs-minor-mode 1)
+;; (hs-minor-mode 1)
 (global-set-key (kbd "M-s") 'hs-toggle-hiding)
 (global-set-key (kbd "M-h") 'hs-hide-all)
 (global-set-key (kbd "M-u") 'hs-show-all)
@@ -135,8 +135,8 @@
 ;; ---------------------------------
 ;; move between windows using arrows
 ;; ---------------------------------
-(windmove-default-keybindings 'meta)
-(require 'windmove)
+;; (windmove-default-keybindings 'meta)
+;; (require 'windmove)
 
 ;; ---------------------------------
 ;; common hooks

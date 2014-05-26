@@ -15,43 +15,40 @@
 (setq local-packages '("git-emacs" "mercurial" "unittest-mode" "emacs-for-python"))
 
 (setq custom-packages '(haml-mode markdown-mode jinja2-mode stylus-mode coffee-mode
-                        clojure-mode pony-mode jedi erlang distel rust-mode monokai-theme
-                        dash-at-point projectile flymake-coffee json-mode puppet-mode))
+                        pony-mode jedi erlang distel dash-at-point projectile flymake-coffee
+                        json-mode puppet-mode js2-mode))
 
 (setq epy-packages '(autopair flymake-cursor python virtualenv nose auto-complete
                      dropdown-list yasnippet yasnippet-bundle yas-jit))
 
-(setq ac-modes '(coffee-mode sql-mode erlang-mode clojure-mode rust-mode html-mode stylus-mode
-                 emacs-lisp-mode))
+(setq ac-modes '(coffee-mode sql-mode erlang-mode html-mode stylus-mode emacs-lisp-mode js2-mode
+                 javascript-mode))
 
 (setq install-packages (append custom-packages epy-packages))
 
 ;; (package-refresh-contents)
 ;; common
 (require 'common)
-;; theme
-(require 'monokai-theme)
 ;; markup
-(require 'haml-mode)
+;;(require 'haml-mode)
 (require 'jinja2-mode)
-(require 'markdown-mode)
-(require 'stylus-mode)
+;;(require 'markdown-mode)
+;;(require 'stylus-mode)
 (require 'json-mode)
 ;; languages
-(require 'clojure-mode)
+(require 'js2-mode)
 (require 'coffee-mode)
-(require 'rust-mode)
 (require 'puppet-mode)
 ;; erlang modes
 (require 'erlang-start)
 (require 'distel)
 ;; python modes
 (require 'epy-init)
-(require 'unittest)
+;;(require 'unittest)
 (require 'pony-mode)
 ;; dvcs
 (require 'git-emacs)
-(require 'mercurial)
+;;(require 'mercurial)
 ;; etc
 (require 'flymake-coffee)
 (require 'dash-at-point)
@@ -59,12 +56,12 @@
 (require 'yas-jit)
 
 ;; yasnippets
-(yas/load-directory "~/.emacs.d/vendor/snippets")
 (yas/jit-load)
+(yas/load-directory "~/.emacs.d/vendor/snippets")
 
 ;; font
-(set-face-attribute 'default nil :font "Menlo-12")
-(setq-default line-spacing 0.05)
+;; (set-face-attribute 'default nil :font "Menlo-12")
+;; (setq-default line-spacing 0.05)
 ;; jedi
 (setq jedi:setup-keys t)
 (setq jedi:complete-on-dot t)
@@ -133,13 +130,20 @@
 (add-to-list 'auto-mode-alist '("\\.hbs$" . html-mode))
 (add-hook 'html-mode-hook 'html-hook)
 
+;; javascript-mode
+(defun javascript-mode-hook()
+  (make-local-variable 'tab-width)
+  (setq tab-width 2))
+
+(add-hook 'js-mode-hook 'js2-minor-mode)
+(add-hook 'js-mode-hook 'javascript-mode-hoo)
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+
 ;; settings
 (custom-set-variables
  '(global-auto-revert-mode t)
  '(global-linum-mode nil)
  '(winner-mode t nil (winner))
- '(cursor-type '(bar . 3)))
-
-;; transparensy
-(set-frame-parameter (selected-frame) 'alpha '(99 50))
-(put 'scroll-left 'disabled nil)
+ '(global-hl-line-mode t)
+ ;'(cursor-type '(bar . 5))
+ )
