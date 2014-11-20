@@ -3,9 +3,10 @@ ZSH=$HOME/.oh-my-zsh
 
 # Theme
 #ZSH_THEME="robbyrussell-hg"
-ZSH_THEME="miloshadzic"
+#ZSH_THEME="miloshadzic"
+ZSH_THEME="pygmalion"
 # Plugins
-plugins=(virtualenvwrapper git osx macports python github pip django mercurial fabric colored-man vagrant)
+plugins=(git) 
 
 source $ZSH/oh-my-zsh.sh
 
@@ -22,7 +23,6 @@ export PIP_RESPECT_VIRTUALENV=true
 
 # Python
 export PATH=$PATH:$HOME/Library/Python/2.7/bin:$HOME/Library/Python/2.7/lib
-export PATH=$PATH:$HOME/Library/Python/3.3/bin:$HOME/Library/Python/3.3/lib
 export PATH=$PATH:$HOME/Library/Python/3.4/bin:$HOME/Library/Python/3.4/lib
 export PATH=$PATH:$HOME/.local/bin
 export PYTHONSTARTUP=$HOME/.python-startup.py
@@ -39,5 +39,3 @@ alias bw="brunch w"
 alias gst="git status -sb"
 
 alias smtp-python="sudo python -m smtpd -c DebuggingServer -n localhost:25"
-
-alias start-ubuntu="VBoxHeadless -s ubuntu"
