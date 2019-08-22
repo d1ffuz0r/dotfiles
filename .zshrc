@@ -23,7 +23,7 @@ export PIP_RESPECT_VIRTUALENV=true
 
 # Python
 export PATH=$PATH:$HOME/Library/Python/2.7/bin:$HOME/Library/Python/2.7/lib
-export PATH=$PATH:$HOME/Library/Python/3.4/bin:$HOME/Library/Python/3.4/lib
+export PATH=$PATH:$HOME/Library/Python/3.7/bin:$HOME/Library/Python/3.7/lib
 export PATH=$PATH:$HOME/.local/bin
 export PYTHONSTARTUP=$HOME/.python-startup.py
 
@@ -37,5 +37,6 @@ alias bb="brunch b"
 alias bw="brunch w"
 
 alias gst="git status -sb"
+alias gdc="git diff --cached"
 
 alias smtp-python="sudo python -m smtpd -c DebuggingServer -n localhost:25"
