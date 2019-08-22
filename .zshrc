@@ -5,6 +5,7 @@ ZSH=$HOME/.oh-my-zsh
 #ZSH_THEME="robbyrussell-hg"
 #ZSH_THEME="miloshadzic"
 ZSH_THEME="pygmalion"
+ZSH_DISABLE_COMPFIX=true
 # Plugins
 plugins=(git) 
 
