@@ -16,15 +16,14 @@ export PATH=$PATH:/opt/local/bin:/opt/local/sbin
 export MANPATH=$MANPATH:/opt/local/share/man
 
 # Virtualenvwrapper
-export VIRTUALENVWRAPPER_PYTHON=$(which python)
+export VIRTUALENVWRAPPER_PYTHON=$(which python3)
 export WORKON_HOME=$HOME/.virtualenvs
-source $(which virtualenvwrapper.sh)
+source /Library/Frameworks/Python.framework/Versions/Current/bin/virtualenvwrapper.sh
 export PIP_VIRTUALENV_BASE=$WORKON_HOME
 export PIP_RESPECT_VIRTUALENV=true
 
 # Python
-export PATH=$PATH:$HOME/Library/Python/2.7/bin:$HOME/Library/Python/2.7/lib
-export PATH=$PATH:$HOME/Library/Python/3.7/bin:$HOME/Library/Python/3.7/lib
+export PATH=$PATH:$HOME/Library/Python/3.9/bin:$HOME/Library/Python/3.9/lib
 export PATH=$PATH:$HOME/.local/bin
 export PYTHONSTARTUP=$HOME/.python-startup.py
 
